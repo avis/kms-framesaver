@@ -1,0 +1,595 @@
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE $ sudo service kurento-media-server-6.0 stop
+ * Stop Kurento Media Server daemon                                                        [ OK ] 
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE $ sudo rm -f /var/log/kurento-media-server/media-server_error.log 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE $ 
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE $ kurento-module-scaffold.sh   kms_frame_saver   .
+
+Initialized empty Git repository in /home/jonny/Work/TELMATE/kms_frame_saver/.git/
+[master (root-commit) 7f75ff1] Initial commit
+ 20 files changed, 338 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 CMakeLists.txt
+ create mode 100644 config.h.cmake
+ create mode 100644 debian/changelog
+ create mode 100644 debian/compat
+ create mode 100644 debian/control
+ create mode 100644 debian/copyright
+ create mode 100644 debian/docs
+ create mode 100644 debian/kms_frame_saver-dev.install
+ create mode 100644 debian/kms_frame_saver.install
+ create mode 100644 debian/rules
+ create mode 100644 debian/source/format
+ create mode 100644 src/CMakeLists.txt
+ create mode 100644 src/gst-plugins/CMakeLists.txt
+ create mode 100644 src/gst-plugins/gstkms_frame_saver.cpp
+ create mode 100644 src/gst-plugins/gstkms_frame_saver.h
+ create mode 100644 src/gst-plugins/kms_frame_saver.c
+ create mode 100644 src/server/CMakeLists.txt
+ create mode 100644 src/server/interface/kms_frame_saver.kmd.json
+ create mode 100644 src/server/interface/kms_frame_saver.kms_frame_saver.kmd.json
+Folder tree created successfully
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE $ cd kms_frame_saver/
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ ls -al
+total 32
+drwxr-xr-x  5 jonny jonny 4096 Dec 22 20:08 .
+drwx------ 10 jonny jonny 4096 Dec 22 20:08 ..
+-rw-r--r--  1 jonny jonny 2259 Dec 22 20:08 CMakeLists.txt
+-rw-r--r--  1 jonny jonny  399 Dec 22 20:08 config.h.cmake
+drwxr-xr-x  3 jonny jonny 4096 Dec 22 20:08 debian
+drwxr-xr-x  8 jonny jonny 4096 Dec 22 20:08 .git
+-rw-r--r--  1 jonny jonny   30 Dec 22 20:08 .gitignore
+drwxr-xr-x  4 jonny jonny 4096 Dec 22 20:08 src
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ mkdir build
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ mkdir history
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ mv src history/src.original
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ ls -al ../kms-framesaver.validated/
+total 36
+drwxr-xr-x  6 jonny jonny 4096 Dec 14 08:56 .
+drwx------ 11 jonny jonny 4096 Dec 22 20:15 ..
+drwxr-xr-x  4 jonny jonny 4096 Dec 21 22:33 build
+-rw-r--r--  1 jonny jonny 2257 Dec 14 07:43 CMakeLists.txt
+-rw-r--r--  1 jonny jonny  396 Dec 14 07:51 config.h.cmake
+drwxr-xr-x  3 jonny jonny 4096 Dec 14 07:43 debian
+drwxr-xr-x  8 jonny jonny 4096 Dec 14 07:43 .git
+-rw-r--r--  1 jonny jonny   29 Dec 14 07:43 .gitignore
+drwxr-xr-x  4 jonny jonny 4096 Dec 15 07:32 src
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ mv ../kms-framesaver.validated/src . 
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ mv CMakeLists.txt history
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ mv ../kms-framesaver.validated/CMakeLists.txt .
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ echo "edit CMakeLists.txt so xxx is kms_frame_saver for: (a) project(xxxx) and (b) GETTEXT_PACKAGE(xxx)"
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ ls -al
+total 40
+drwxr-xr-x  7 jonny jonny 4096 Dec 22 20:27 .
+drwx------ 11 jonny jonny 4096 Dec 22 20:15 ..
+drwxr-xr-x  2 jonny jonny 4096 Dec 22 20:08 build
+-rw-r--r--  1 jonny jonny 2260 Dec 22 20:26 CMakeLists.txt
+-rw-r--r--  1 jonny jonny  399 Dec 22 20:08 config.h.cmake
+drwxr-xr-x  3 jonny jonny 4096 Dec 22 20:08 debian
+drwxr-xr-x  8 jonny jonny 4096 Dec 22 20:08 .git
+-rw-r--r--  1 jonny jonny   30 Dec 22 20:08 .gitignore
+drwxr-xr-x  3 jonny jonny 4096 Dec 22 20:27 history
+drwxr-xr-x  4 jonny jonny 4096 Dec 15 07:32 src
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver $ cd build/
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ ls -al
+total 8
+drwxr-xr-x 2 jonny jonny 4096 Dec 22 20:08 .
+drwxr-xr-x 7 jonny jonny 4096 Dec 22 20:27 ..
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ cmake .. -DCMAKE_INSTALL_PREFIX=/usr && make && sudo make install
+-- The C compiler identification is GNU 4.8.4
+-- The CXX compiler identification is GNU 4.8.4
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+If KurentoHelpers is not found, then it is necessary to install
+          kms-cmake-utils package from the kurento repository
+-- Found KurentoHelpers: 1.3.2 (found version "1.3.2") 
+-- Found Git: /usr/bin/git (found version "1.9.1") 
+If CodeGenerator is not found, then it is necessary to install
+          kms-core package from the kurento repository
+-- Found PkgConfig: /usr/bin/pkg-config (found version "0.26") 
+-- Found /usr/bin/kurento-module-creator
+-- Found /usr/bin/kurento-module-creator
+-- Found KurentoModuleCreator: 4.0.7 (found version "4.0.7") 
+-- Resolving KurentoModuleCreator version ^4.0.0 with 4.0.7
+-- Version got from git is 0.0.1~0.g7f75ff1
+-- checking for module 'gstreamer-1.5>=1.5.0'
+--   found gstreamer-1.5, version 1.8.1.1
+-- checking for module 'gstreamer-base-1.5>=1.5.0'
+--   found gstreamer-base-1.5, version 1.8.1.1
+-- checking for module 'gstreamer-video-1.5>=1.5.0'
+--   found gstreamer-video-1.5, version 1.8.1.1
+-- checking for module 'gstreamer-check-1.5>=1.5.0'
+--   found gstreamer-check-1.5, version 1.8.1.1
+-- checking for module 'kmscore'
+--   found kmscore, version 6.6.1
+-- checking for module 'opencv>=2.0.0'
+--   found opencv, version 2.4.8
+-- Compiling : kms_frame_saver-0.0.1~0.g7f75ff1
+-- KurentoModuleCreator Already found
+-- Including generated cmake framesavervideofilterDependencies.cmake
+-- KMSCORE Already found
+-- Looking for KMSELEMENTS: 6.6.1
+-- KMSCORE Already found
+-- Looking for KMSELEMENTS: 6.6.1
+-- KMSCORE Already found
+-- Found KMSELEMENTS: 6.6.1 (found version "6.6.1") 
+-- Resolving KMSELEMENTS version ^6.0.0 with 6.6.1
+-- Looking for KMSFILTERS: 6.6.1
+-- KMSCORE Already found
+-- KMSELEMENTS Already found
+-- checking for module 'opencv'
+--   found opencv, version 2.4.8
+-- Found opencv
+-- Looking for KMSFILTERS: 6.6.1
+-- KMSCORE Already found
+-- KMSELEMENTS Already found
+-- opencv Already found
+-- Found KMSFILTERS: 6.6.1 (found version "6.6.1") 
+-- Resolving KMSFILTERS version ^6.0.0 with 6.6.1
+-- Generated: kmsframesavervideofilter.pc.in
+-- Generated: FrameSaverVideoFilterImpl.cpp
+-- Generated: FrameSaverVideoFilterImpl.hpp
+-- Generated: FindKMSFRAMESAVERVIDEOFILTER.cmake.in
+-- Getting config files from /home/jonny/Work/TELMATE/kms_frame_saver/src/server/config
+-- No config files found
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/jonny/Work/TELMATE/kms_frame_saver/build
+[  4%] Generating cpp_interface.generated, interface/generated-cpp/FrameSaverVideoFilter.cpp, interface/generated-cpp/FrameSaverVideoFilter.hpp
+Generation success
+[  9%] Generating cpp_interface_internal.generated, interface/generated-cpp/FrameSaverVideoFilterInternal.cpp, interface/generated-cpp/FrameSaverVideoFilterInternal.hpp
+Generation success
+Scanning dependencies of target kmsframesavervideofilterinterface
+[ 14%] Building CXX object src/server/CMakeFiles/kmsframesavervideofilterinterface.dir/interface/generated-cpp/FrameSaverVideoFilterInternal.cpp.o
+[ 19%] Building CXX object src/server/CMakeFiles/kmsframesavervideofilterinterface.dir/interface/generated-cpp/FrameSaverVideoFilter.cpp.o
+Linking CXX static library libkmsframesavervideofilterinterface.a
+[ 19%] Built target kmsframesavervideofilterinterface
+[ 23%] Generating cpp_server_internal.generated, implementation/generated-cpp/SerializerExpanderFramesavervideofilter.cpp, implementation/generated-cpp/FrameSaverVideoFilterImplInternal.cpp, implementation/generated-cpp/FrameSaverVideoFilterImplFactory.hpp
+Generation success
+Scanning dependencies of target kmsframesavervideofilterimpl
+[ 28%] Building CXX object src/server/CMakeFiles/kmsframesavervideofilterimpl.dir/implementation/objects/FrameSaverVideoFilterImpl.cpp.o
+[ 33%] Building CXX object src/server/CMakeFiles/kmsframesavervideofilterimpl.dir/implementation/generated-cpp/SerializerExpanderFramesavervideofilter.cpp.o
+[ 38%] Building CXX object src/server/CMakeFiles/kmsframesavervideofilterimpl.dir/implementation/generated-cpp/FrameSaverVideoFilterImplInternal.cpp.o
+Linking CXX shared library libkmsframesavervideofilterimpl.so
+[ 38%] Built target kmsframesavervideofilterimpl
+[ 42%] Generating framesavervideofilter.kmd.json
+Generation success
+[ 47%] Generating cpp_module.generated, implementation/generated-cpp/Module.cpp
+Generation success
+Scanning dependencies of target kmsframesavervideofiltermodule
+[ 52%] Building CXX object src/server/CMakeFiles/kmsframesavervideofiltermodule.dir/implementation/generated-cpp/Module.cpp.o
+[ 57%] Building CXX object src/server/CMakeFiles/kmsframesavervideofiltermodule.dir/module_version.cpp.o
+[ 61%] Building CXX object src/server/CMakeFiles/kmsframesavervideofiltermodule.dir/module_name.cpp.o
+[ 66%] Building CXX object src/server/CMakeFiles/kmsframesavervideofiltermodule.dir/module_descriptor.cpp.o
+[ 71%] Building CXX object src/server/CMakeFiles/kmsframesavervideofiltermodule.dir/module_generation_time.cpp.o
+Linking CXX shared module libkmsframesavervideofiltermodule.so
+[ 71%] Built target kmsframesavervideofiltermodule
+Scanning dependencies of target kms_frame_saver_video_filter
+[ 76%] Building C object src/gst-plugins/CMakeFiles/kms_frame_saver_video_filter.dir/gst_Frame_Saver_Video_Filter_Plugin.c.o
+[ 80%] Building C object src/gst-plugins/CMakeFiles/kms_frame_saver_video_filter.dir/frame_saver/frame_saver_filter.c.o
+[ 85%] Building C object src/gst-plugins/CMakeFiles/kms_frame_saver_video_filter.dir/frame_saver/frame_saver_filter_lib.c.o
+[ 90%] Building C object src/gst-plugins/CMakeFiles/kms_frame_saver_video_filter.dir/frame_saver/frame_saver_params.c.o
+[ 95%] Building C object src/gst-plugins/CMakeFiles/kms_frame_saver_video_filter.dir/frame_saver/save_frames_as_png.c.o
+[100%] Building C object src/gst-plugins/CMakeFiles/kms_frame_saver_video_filter.dir/frame_saver/wrapped_natives.c.o
+Linking C shared module libkms_frame_saver_video_filter.so
+[100%] Built target kms_frame_saver_video_filter
+[sudo] password for jonny: 
+[ 19%] Built target kmsframesavervideofilterinterface
+[ 38%] Built target kmsframesavervideofilterimpl
+[ 71%] Built target kmsframesavervideofiltermodule
+[100%] Built target kms_frame_saver_video_filter
+Install the project...
+-- Install configuration: ""
+-- Installing: /usr/lib/x86_64-linux-gnu/libkmsframesavervideofilterinterface.a
+-- Installing: /usr/include/kurento/modules/framesavervideofilter/FrameSaverVideoFilter.hpp
+-- Installing: /usr/lib/x86_64-linux-gnu/pkgconfig/kmsframesavervideofilter.pc
+-- Installing: /usr/lib/x86_64-linux-gnu/libkmsframesavervideofilterimpl.so.0.0.1~0.g7f75ff1
+-- Installing: /usr/lib/x86_64-linux-gnu/libkmsframesavervideofilterimpl.so.0
+-- Installing: /usr/lib/x86_64-linux-gnu/libkmsframesavervideofilterimpl.so
+-- Up-to-date: /usr/include/kurento/modules/framesavervideofilter/FrameSaverVideoFilterImpl.hpp
+-- Installing: /usr/include/kurento/modules/framesavervideofilter/FrameSaverVideoFilterImplFactory.hpp
+-- Installing: /usr/lib/x86_64-linux-gnu/kurento/modules/libkmsframesavervideofiltermodule.so
+-- Removed runtime path from "/usr/lib/x86_64-linux-gnu/kurento/modules/libkmsframesavervideofiltermodule.so"
+-- Installing: /usr/share/cmake-2.8/Modules/FindKMSFRAMESAVERVIDEOFILTER.cmake
+-- Installing: /usr/share/kurento/modules/framesavervideofilter.kmd.json
+-- Installing: /usr/lib/x86_64-linux-gnu/gstreamer-1.5/libkms_frame_saver_video_filter.so
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ cmake .. -DGENERATE_JAVA_CLIENT_PROJECT=TRUE
+If KurentoHelpers is not found, then it is necessary to install
+          kms-cmake-utils package from the kurento repository
+If CodeGenerator is not found, then it is necessary to install
+          kms-core package from the kurento repository
+-- KurentoModuleCreator Already found
+-- Version got from git is 0.0.1~0.g7f75ff1
+-- Compiling : kms_frame_saver-0.0.1~0.g7f75ff1
+-- KurentoModuleCreator Already found
+-- Including generated cmake framesavervideofilterDependencies.cmake
+-- KMSCORE Already found
+-- KMSELEMENTS Already found
+-- KMSFILTERS Already found
+-- Generated: kmsframesavervideofilter.pc.in
+-- Generated: FrameSaverVideoFilterImpl.cpp
+-- Generated: FrameSaverVideoFilterImpl.hpp
+-- Generated: FindKMSFRAMESAVERVIDEOFILTER.cmake.in
+-- Getting config files from /home/jonny/Work/TELMATE/kms_frame_saver/src/server/config
+-- No config files found
+-- Found Maven: /usr/bin/mvn  
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/jonny/Work/TELMATE/kms_frame_saver/build
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ make java_install
+Scanning dependencies of target java_install
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building framesavervideofilter 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+Downloading: http://repo.maven.apache.org/maven2/org/kurento/kurento-client/maven-metadata.xml
+Downloaded: http://repo.maven.apache.org/maven2/org/kurento/kurento-client/maven-metadata.xml (673 B at 2.8 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/kurento/kms-api-core/maven-metadata.xml
+Downloaded: http://repo.maven.apache.org/maven2/org/kurento/kms-api-core/maven-metadata.xml (609 B at 13.8 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/kurento/kms-api-elements/maven-metadata.xml
+Downloaded: http://repo.maven.apache.org/maven2/org/kurento/kms-api-elements/maven-metadata.xml (613 B at 12.2 KB/sec)
+[INFO] 
+[INFO] --- kurento-maven-plugin:2.0.2:generate-kurento-client (default) @ framesavervideofilter ---
+[INFO] Searching for kmd files in /home/jonny/Work/TELMATE/kms_frame_saver/build/java/src/main/kmd
+[INFO]   Found kmd file to generate code: /home/jonny/Work/TELMATE/kms_frame_saver/build/java/src/main/kmd/framesavervideofilter.kmd.json
+[INFO] Searching for kurento dependencies:
+[INFO]   Found kurento dependency in artifact: org.kurento:kms-api-core:6.6.0
+[INFO]   Found kurento dependency in artifact: org.kurento:kms-api-elements:6.6.0
+[INFO]   Found kurento dependency in artifact: org.kurento:kms-api-filters:6.6.0
+[INFO] Preparing code generation tool:
+[INFO]   Adding kmd file to generate code: /home/jonny/Work/TELMATE/kms_frame_saver/build/java/src/main/kmd/framesavervideofilter.kmd.json
+[INFO]   Adding dependency kmd file: /META-INF/kurento/core.kmd.json
+[INFO]   Adding dependency kmd file: /META-INF/kurento/elements.kmd.json
+[INFO]   Adding dependency kmd file: /META-INF/kurento/filters.kmd.json
+[INFO] Searching for kurento dependencies:
+[INFO] Templates path: /templates
+[INFO] Generation success
+[INFO] 
+[INFO] --- maven-resources-plugin:2.3:resources (default-resources) @ framesavervideofilter ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/jonny/Work/TELMATE/kms_frame_saver/build/java/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.0.2:compile (default-compile) @ framesavervideofilter ---
+[INFO] Compiling 2 source files to /home/jonny/Work/TELMATE/kms_frame_saver/build/java/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.3:testResources (default-testResources) @ framesavervideofilter ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/jonny/Work/TELMATE/kms_frame_saver/build/java/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.0.2:testCompile (default-testCompile) @ framesavervideofilter ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.10:test (default-test) @ framesavervideofilter ---
+[INFO] No tests to run.
+[INFO] Surefire report directory: /home/jonny/Work/TELMATE/kms_frame_saver/build/java/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+
+Results :
+
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-jar-plugin:2.2:jar (default-jar) @ framesavervideofilter ---
+[INFO] Building jar: /home/jonny/Work/TELMATE/kms_frame_saver/build/java/target/framesavervideofilter-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-install-plugin:2.3:install (default-install) @ framesavervideofilter ---
+[INFO] Installing /home/jonny/Work/TELMATE/kms_frame_saver/build/java/target/framesavervideofilter-0.0.1-SNAPSHOT.jar to /home/jonny/.m2/repository/org/kurento/module/framesavervideofilter/0.0.1-SNAPSHOT/framesavervideofilter-0.0.1-SNAPSHOT.jar
+[INFO] Installing /home/jonny/Work/TELMATE/kms_frame_saver/build/java/pom.xml to /home/jonny/.m2/repository/org/kurento/module/framesavervideofilter/0.0.1-SNAPSHOT/framesavervideofilter-0.0.1-SNAPSHOT.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 3.504s
+[INFO] Finished at: Thu Dec 22 20:49:43 PST 2016
+[INFO] Final Memory: 29M/317M
+[INFO] ------------------------------------------------------------------------
+Built target java_install
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ ls -al
+total 104
+drwxr-xr-x 5 jonny jonny  4096 Dec 22 20:49 .
+drwxr-xr-x 7 jonny jonny  4096 Dec 22 20:27 ..
+-rw-r--r-- 1 jonny jonny 59557 Dec 22 20:49 CMakeCache.txt
+drwxr-xr-x 4 jonny jonny  4096 Dec 22 20:49 CMakeFiles
+-rw-r--r-- 1 jonny jonny  1845 Dec 22 20:47 cmake_install.cmake
+-rw-r--r-- 1 jonny jonny   407 Dec 22 20:47 config.h
+-rw-r--r-- 1 root  root    853 Dec 22 20:47 install_manifest.txt
+drwxr-xr-x 4 jonny jonny  4096 Dec 22 20:49 java
+-rw-r--r-- 1 jonny jonny  8718 Dec 22 20:49 Makefile
+drwxr-xr-x 5 jonny jonny  4096 Dec 22 20:49 src
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ ls -al java
+total 20
+drwxr-xr-x 4 jonny jonny 4096 Dec 22 20:49 .
+drwxr-xr-x 5 jonny jonny 4096 Dec 22 20:49 ..
+-rw-r--r-- 1 jonny jonny 1506 Dec 22 20:49 pom.xml
+drwxr-xr-x 3 jonny jonny 4096 Dec 22 20:49 src
+drwxr-xr-x 6 jonny jonny 4096 Dec 22 20:49 target
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ ls -alR java/target/generated-sources/kmd/org/kurento/module
+java/target/generated-sources/kmd/org/kurento/module:
+total 16
+drwxr-xr-x 3 jonny jonny 4096 Dec 22 20:49 .
+drwxr-xr-x 3 jonny jonny 4096 Dec 22 20:49 ..
+drwxr-xr-x 2 jonny jonny 4096 Dec 22 20:49 framesavervideofilter
+-rw-r--r-- 1 jonny jonny  260 Dec 22 20:49 FramesavervideofilterModuleInfo.java
+
+java/target/generated-sources/kmd/org/kurento/module/framesavervideofilter:
+total 16
+drwxr-xr-x 2 jonny jonny 4096 Dec 22 20:49 .
+drwxr-xr-x 3 jonny jonny 4096 Dec 22 20:49 ..
+-rw-r--r-- 1 jonny jonny 6515 Dec 22 20:49 FrameSaverVideoFilter.java
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ echo "copy folder (build/java/target/generated-sources/kmd/org/kurento/module) to the respective place in any Java-App folder" 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ gst-inspect-1.5 "framesavervideofilter"
+
+framesavervideofilter
+
+Factory Details:
+  Rank                     none (0)
+  Long-name                framesavervideofilter
+  Klass                    Frame-Saver-Video-Filter
+  Description              Saves Frames (Can Insert TEE)
+  Author                   Author <<a.TODO@hostname.org>>
+
+Plugin Details:
+  Name                     FrameSaverPlugin
+  Description              saves-image-frames
+  Filename                 /usr/lib/x86_64-linux-gnu/gstreamer-1.5/libkms_frame_saver_video_filter.so
+  Version                  1.0.1 BUILD.RELEASE.GCC.LINUX (Dec 22 2016  20:47:37) name=framesavervideofilter
+  License                  LGPL
+  Source module            kms_frame_saver
+  Binary package           GStreamer
+  Origin URL               http://gstreamer.net/
+
+GObject
+ +----GInitiallyUnowned
+       +----GstObject
+             +----GstElement
+                   +----GstBaseTransform
+                         +----GstVideoFilter
+                               +----GstFrameSaverPlugin
+
+Pad Templates:
+  SINK template: 'sink'
+    Availability: Always
+    Capabilities:
+      video/x-raw
+                 format: { BGR }
+                  width: [ 1, 2147483647 ]
+                 height: [ 1, 2147483647 ]
+              framerate: [ 0/1, 2147483647/1 ]
+
+  SRC template: 'src'
+    Availability: Always
+    Capabilities:
+      video/x-raw
+                 format: { BGR }
+                  width: [ 1, 2147483647 ]
+                 height: [ 1, 2147483647 ]
+              framerate: [ 0/1, 2147483647/1 ]
+
+
+Element Flags:
+  no flags set
+
+Element Implementation:
+  Has change_state() function: gst_element_change_state_func
+
+Element has no clocking capabilities.
+Element has no URI handling capabilities.
+
+Pads:
+  SINK: 'sink'
+    Pad Template: 'sink'
+  SRC: 'src'
+    Pad Template: 'src'
+
+Element Properties:
+  name                : The name of the object
+                        flags: readable, writable
+                        String. Default: "framesaverplugin0"
+  parent              : The parent of the object
+                        flags: readable, writable
+                        Object of type "GstObject"
+  qos                 : Handle Quality-of-Service events
+                        flags: readable, writable
+                        Boolean. Default: true
+  wait                : wait before snapping another frame
+                        flags: readable, writable
+                        String. Default: "wait=2000"
+  snap                : snap and save frames as RGB images in PNG files
+                        flags: readable, writable
+                        String. Default: "snap=0,0,0"
+  link                : insert TEE between producer and consumer elements
+                        flags: readable, writable
+                        String. Default: "link=Live,auto,auto"
+  pads                : pads used by the producer and consumer elements
+                        flags: readable, writable
+                        String. Default: "pads=auto,auto,auto"
+  path                : path of working folder for saved image files
+                        flags: readable, writable
+                        String. Default: "path=auto"
+  note                : most recent error
+                        flags: readable
+                        String. Default: "note=none"
+  silent              : Silent is 1/True --- Verbose is 0/False
+                        flags: readable, writable
+                        Boolean. Default: true
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ sudo service kurento-media-server-6.0 start
+ * Starting Kurento Media Server                                                             [ OK ] 
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_frame_saver/build $ kurento-media-server -v
+Version: 6.6.1
+Found modules:
+	Module: 'core' version '6.6.1'
+	Module: 'elements' version '6.6.1'
+	Module: 'filters' version '6.6.1'
+	Module: 'framesavervideofilter' version '0.0.1~0.g7f75ff1'
+	Module: 'pointerdetector' version '6.6.1-dev'
+
+###################################################################################################
+###################################################################################################
+###################################################################################################

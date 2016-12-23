@@ -1,0 +1,558 @@
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ ls -al
+total 20
+drwxr-xr-x  4 jonny jonny 4096 Dec 22 21:22 .
+drwx------ 10 jonny jonny 4096 Dec 22 21:20 ..
+drwxr-xr-x  4 jonny jonny 4096 Nov 29 15:41 kurento-one2one-call
+drwxr-xr-x  5 jonny jonny 4096 Nov 30 00:21 kurento-player
+-rw-r--r--  1 jonny jonny 2546 Nov 29 15:41 pom.xml
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ mv kurento-one2one-call/ APP-Java-For-one2one-call-with-two-way-frame-saver/
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ mv kurento-player/ APP-Java-For-player-with-one-way-frame-saver/
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ cp -fr   /home/jonny/Work/TELMATE/kms_frame_saver/build/java/target/generated-sources/kmd/org/kurento/module .
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ ls -al
+total 24
+drwxr-xr-x  6 jonny jonny 4096 Dec 22 21:35 .
+drwx------ 10 jonny jonny 4096 Dec 22 21:20 ..
+drwxr-xr-x  4 jonny jonny 4096 Nov 29 15:41 APP-Java-For-one2one-call-with-two-way-frame-saver
+drwxr-xr-x  5 jonny jonny 4096 Nov 30 00:21 APP-Java-For-player-with-one-way-frame-saver
+drwxr-xr-x  3 jonny jonny 4096 Dec 22 21:32 module
+-rw-r--r--  1 jonny jonny 2546 Nov 29 15:41 pom.xml
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ cp -fr module  ./APP-Java-For-player-with-one-way-frame-saver/src/main/java/org/kurento
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ 
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ cp -fr module  ./APP-Java-For-one2one-call-with-two-way-frame-saver/src/main/java/org/kurento
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ 
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ rm -r module/
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ 
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ ls -al
+total 20
+drwxr-xr-x  4 jonny jonny 4096 Dec 22 21:55 .
+drwx------ 10 jonny jonny 4096 Dec 22 21:20 ..
+drwxr-xr-x  4 jonny jonny 4096 Nov 29 15:41 APP-Java-For-one2one-call-with-two-way-frame-saver
+drwxr-xr-x  5 jonny jonny 4096 Nov 30 00:21 APP-Java-For-player-with-one-way-frame-saver
+-rw-r--r--  1 jonny jonny 2546 Nov 29 15:41 pom.xml
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ 
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps $ cd APP-Java-For-player-with-one-way-frame-saver/
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver $ ls -al
+total 56
+drwxr-xr-x 5 jonny jonny  4096 Nov 30 00:21 .
+drwxr-xr-x 4 jonny jonny  4096 Dec 22 21:55 ..
+-rw-r--r-- 1 jonny jonny    46 Nov 29 15:40 .bowerrc
+-rw-r--r-- 1 jonny jonny     9 Nov 29 15:40 .gitignore
+-rw-r--r-- 1 jonny jonny 11357 Nov 29 15:40 LICENSE
+drwxr-xr-x 4 jonny jonny  4096 Nov 29 15:40 package
+-rw-r--r-- 1 jonny jonny  4901 Nov 29 15:41 pom.xml
+-rw-r--r-- 1 jonny jonny  5154 Nov 29 15:40 README.md
+drwxr-xr-x 4 jonny jonny  4096 Nov 29 15:40 src
+drwxr-xr-x 5 jonny jonny  4096 Nov 29 16:20 target
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver $ cd src/main/resources/static/
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver/src/main/resources/static $ cp /home/jonny/Work/TELMATE/kurento-tutorial-java/APP-kurento-player-with-kms-framesaver/src/main/resources/static/index.html .
+
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver/src/main/resources/static $ ls -al
+total 28
+drwxr-xr-x 5 jonny jonny 4096 Dec 22 22:07 .
+drwxr-xr-x 3 jonny jonny 4096 Nov 29 15:40 ..
+drwxr-xr-x 2 jonny jonny 4096 Nov 29 15:40 css
+drwxr-xr-x 2 jonny jonny 4096 Nov 29 15:40 img
+-rw-r--r-- 1 jonny jonny 6592 Dec 22 22:06 index.html
+drwxr-xr-x 2 jonny jonny 4096 Nov 29 15:40 js
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver $ cd ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver/
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver $ cd src/main/java/org/kurento/tutorial/player/
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver/src/main/java/org/kurento/tutorial/player $ cp /home/jonny/Work/TELMATE/kurento-tutorial-java/APP-kurento-player-with-kms-framesaver/src/main/java/org/kurento/tutorial/player/*.java  .
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+$ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver/src/main/java/org/kurento/tutorial/player $ ls -al
+total 36
+drwxr-xr-x 2 jonny jonny  4096 Dec 22 22:53 .
+drwxr-xr-x 3 jonny jonny  4096 Nov 29 15:40 ..
+-rw------- 1 jonny jonny  6268 Dec 22 22:53 FrameSaverPluginProxy.java
+-rw-r--r-- 1 jonny jonny  1740 Dec 22 22:16 PlayerApp.java
+-rw------- 1 jonny jonny 11519 Dec 22 22:53 PlayerHandler.java
+-rw-r--r-- 1 jonny jonny  1768 Dec 22 22:16 UserSession.java
+
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver/src/main/java/org/kurento/tutorial/player $ cd ../../../../../../..
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver $ 
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver $ mvn compile
+
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Kurento Java Tutorial - Player 6.6.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.4.1:enforce (enforce-java-version) @ kurento-player ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.4.1:enforce (enforce-maven-version) @ kurento-player ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.4.1:enforce (enforce-bytecode-version) @ kurento-player ---
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.4:create-timestamp (get-build-timestamp) @ kurento-player ---
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.4:create (get-scm-revision) @ kurento-player ---
+[INFO] Executing: /bin/sh -c cd '/home/jonny/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver' && 'git' 'rev-parse' '--verify' 'HEAD'
+[INFO] Working directory: /home/jonny/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver
+[INFO] Storing buildNumber: UNKNOWN at timestamp: 1482476102269
+[WARNING] Cannot get the branch information from the git repository: 
+Detecting the current branch failed: fatal: Not a git repository (or any of the parent directories): .git
+
+[INFO] Executing: /bin/sh -c cd '/home/jonny/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver' && 'git' 'rev-parse' '--verify' 'HEAD'
+[INFO] Working directory: /home/jonny/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ kurento-player ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 13 resources
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.3:compile (default-compile) @ kurento-player ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 6 source files to /home/jonny/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver/target/classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.7
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 3.277s
+[INFO] Finished at: Thu Dec 22 22:55:03 PST 2016
+[INFO] Final Memory: 32M/588M
+[INFO] ------------------------------------------------------------------------
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver $ mvn exec:java
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Kurento Java Tutorial - Player 6.6.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- exec-maven-plugin:1.4.0:java (default-cli) @ kurento-player ---
+
+   .------------------------------------.
+   |                                    |
+   |   | |/ /  _ _ _ ___ _ _| |_ ___    |
+   |   | ' < || | '_/ -_) ' \  _/ _ \   |
+   |   |_|\_\_,_|_| \___|_||_\__\___/   |
+   |                                    |
+   '------------------------------------'
+       Kurento Java Tutorial - Player
+       Version 6.6.0
+
+2016-12-22 22:55:13.554  INFO 9763 --- [layerApp.main()] org.kurento.tutorial.player.PlayerApp    : Starting PlayerApp on XPS-15-JB1-LNX17 with PID 9763 (/home/jonny/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver/target/classes started by jonny in /home/jonny/Work/TELMATE/kms_tutorial_apps/APP-Java-For-player-with-one-way-frame-saver)
+2016-12-22 22:55:13.558  INFO 9763 --- [layerApp.main()] org.kurento.tutorial.player.PlayerApp    : No active profile set, falling back to default profiles: default
+2016-12-22 22:55:13.718  INFO 9763 --- [layerApp.main()] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@91d5f71: startup date [Thu Dec 22 22:55:13 PST 2016]; root of context hierarchy
+2016-12-22 22:55:14.340  INFO 9763 --- [layerApp.main()] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2016-12-22 22:55:14.642  INFO 9763 --- [layerApp.main()] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8443 (https)
+2016-12-22 22:55:14.654  INFO 9763 --- [layerApp.main()] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2016-12-22 22:55:14.655  INFO 9763 --- [layerApp.main()] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.0.28
+2016-12-22 22:55:14.721  INFO 9763 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2016-12-22 22:55:14.721  INFO 9763 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1006 ms
+2016-12-22 22:55:14.946  INFO 9763 --- [ost-startStop-1] o.s.b.c.e.ServletRegistrationBean        : Mapping servlet: 'dispatcherServlet' to [/]
+2016-12-22 22:55:14.949  INFO 9763 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-12-22 22:55:14.950  INFO 9763 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2016-12-22 22:55:14.950  INFO 9763 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2016-12-22 22:55:14.950  INFO 9763 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'requestContextFilter' to: [/*]
+2016-12-22 22:55:14.994  INFO 9763 --- [layerApp.main()] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'defaultSockJsTaskScheduler'
+2016-12-22 22:55:15.125  INFO 9763 --- [layerApp.main()] org.eclipse.jetty.util.log               : Logging initialized @4120ms
+2016-12-22 22:55:15.271  INFO 9763 --- [ntLoopGroup-2-1] o.k.j.c.JsonRpcClientNettyWebSocket      : [KurentoClient]  Inititating new Netty channel. Will create new handler too!
+2016-12-22 22:55:15.369  INFO 9763 --- [layerApp.main()] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/player] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2016-12-22 22:55:15.466  INFO 9763 --- [layerApp.main()] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@91d5f71: startup date [Thu Dec 22 22:55:13 PST 2016]; root of context hierarchy
+2016-12-22 22:55:15.506  INFO 9763 --- [layerApp.main()] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-12-22 22:55:15.507  INFO 9763 --- [layerApp.main()] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-12-22 22:55:15.509  INFO 9763 --- [layerApp.main()] o.s.w.s.c.a.WebMvcConfigurerAdapter      : Adding welcome page: class path resource [static/index.html]
+2016-12-22 22:55:15.514  INFO 9763 --- [layerApp.main()] o.s.w.s.handler.SimpleUrlHandlerMapping  : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2016-12-22 22:55:15.576  INFO 9763 --- [layerApp.main()] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-22 22:55:15.577  INFO 9763 --- [layerApp.main()] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-22 22:55:15.604  INFO 9763 --- [layerApp.main()] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-22 22:55:15.709  INFO 9763 --- [layerApp.main()] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2016-12-22 22:55:15.716  INFO 9763 --- [layerApp.main()] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2016-12-22 22:55:15.940  INFO 9763 --- [layerApp.main()] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8443 (https)
+2016-12-22 22:55:15.943  INFO 9763 --- [layerApp.main()] org.kurento.tutorial.player.PlayerApp    : Started PlayerApp in 2.589 seconds (JVM running for 4.94)
+2016-12-22 22:55:23.696  INFO 9763 --- [nio-8443-exec-7] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2016-12-22 22:55:23.696  INFO 9763 --- [nio-8443-exec-7] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2016-12-22 22:55:23.704  INFO 9763 --- [nio-8443-exec-7] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 8 ms
+2016-12-22 22:55:25.687  INFO 9763 --- [nio-8443-exec-7] o.kurento.tutorial.player.PlayerHandler  : Incoming Message {"id":"start","sdpOffer":"v=0\r\no=mozilla...
+..........................................................................
+..........................................................................
+.................................................... --- From Session-ID 0
+
+2016-12-22 22:55:25.687  INFO 9763 --- [nio-8443-exec-7] o.kurento.tutorial.player.PlayerHandler  : Video-URL is https://upload.wikimedia.org/wikipedia/commons/2/25/Sintel_webm_extract.webm --- Session-ID is 0
+
+2016-12-22 22:55:25.844  INFO 9763 --- [nio-8443-exec-7] o.k.t.player.FrameSaverPluginProxy       : FrameSaverPluginProxy.newInstance(%s) 
+
+2016-12-22 22:55:25.865  INFO 9763 --- [nio-8443-exec-7] o.k.t.player.FrameSaverPluginProxy       : FramesSaver WAS CREATED
+
+2016-12-22 22:55:25.868  INFO 9763 --- [nio-8443-exec-7] o.k.t.player.FrameSaverPluginProxy       : FrameSaverPluginProxy.setOneParam: name=wait  value=1000  ok=true
+2016-12-22 22:55:25.874  INFO 9763 --- [nio-8443-exec-7] o.k.t.player.FrameSaverPluginProxy       : FrameSaverPluginProxy.setOneParam: name=snap  value=1000,9,2  ok=true
+2016-12-22 22:55:25.876  INFO 9763 --- [nio-8443-exec-7] o.k.t.player.FrameSaverPluginProxy       : FrameSaverPluginProxy.setOneParam: name=link  value=auto,auto,auto  ok=true
+2016-12-22 22:55:25.878  INFO 9763 --- [nio-8443-exec-7] o.k.t.player.FrameSaverPluginProxy       : FrameSaverPluginProxy.setOneParam: name=pads  value=auto,auto,auto  ok=true
+2016-12-22 22:55:25.881  INFO 9763 --- [nio-8443-exec-7] o.k.t.player.FrameSaverPluginProxy       : FrameSaverPluginProxy.setOneParam: name=path  value=auto  ok=true
+2016-12-22 22:55:25.883  INFO 9763 --- [nio-8443-exec-7] o.k.t.player.FrameSaverPluginProxy       : FrameSaverPluginProxy.setOneParam: name=path  value=/tmp/FrameSaver_Player_To_Viewer  ok=true
+
+2016-12-22 22:55:25.888  INFO 9763 --- [nio-8443-exec-7] o.k.t.player.FrameSaverPluginProxy       : CONNECTED:   aFromElement-->>--mFramesSaverFilter-->>--aIntoElement
+
+2016-12-22 22:55:25.891  INFO 9763 --- [nio-8443-exec-7] o.k.t.player.FrameSaverPluginProxy       : mFramesSaverFilter.ElementsNames: (kmsfilterelement1,fakesink13,tee13,kmsagnosticbin2-5,framesaverplugin1,queue7,kmsagnosticbin2-4,) 
+
+2016-12-22 22:55:25.896  INFO 9763 --- [nio-8443-exec-7] o.k.t.player.FrameSaverPluginProxy       : FrameSaverPluginProxy.setOneParam: name=snap  value=2000,4,2  ok=true
+
+2016-12-22 22:55:25.897  INFO 9763 --- [nio-8443-exec-7] o.kurento.tutorial.player.PlayerHandler  : Incoming Message {"id":"onIceCandidate","candidate":{"candidate":"candidate:0 1 UDP 2122252543 192.168.0.8 58892 typ host","sdpMid":"sdparta_0","sdpMLineIndex":0}} --- From Session-ID 0
+
+2016-12-22 22:55:25.901  INFO 9763 --- [nio-8443-exec-7] o.kurento.tutorial.player.PlayerHandler  : Incoming Message {"id":"onIceCandidate","candidate":{"candidate":"candidate:0 2 UDP 2122252542 192.168.0.8 57143 typ host","sdpMid":"sdparta_0","sdpMLineIndex":0}} --- From Session-ID 0
+
+2016-12-22 22:55:25.903  INFO 9763 --- [nio-8443-exec-7] o.kurento.tutorial.player.PlayerHandler  : Incoming Message {"id":"onIceCandidate","candidate":{"candidate":"candidate:0 1 UDP 2122252543 192.168.0.8 58336 typ host","sdpMid":"sdparta_1","sdpMLineIndex":1}} --- From Session-ID 0
+
+2016-12-22 22:55:25.906  INFO 9763 --- [nio-8443-exec-7] o.kurento.tutorial.player.PlayerHandler  : Incoming Message {"id":"onIceCandidate","candidate":{"candidate":"candidate:0 2 UDP 2122252542 192.168.0.8 37579 typ host","sdpMid":"sdparta_1","sdpMLineIndex":1}} --- From Session-ID 0
+
+2016-12-22 22:55:25.910  INFO 9763 --- [nio-8443-exec-7] o.kurento.tutorial.player.PlayerHandler  : Incoming Message {"id":"onIceCandidate","candidate":{"candidate":"candidate:2 1 UDP 1686052607 66.75.56.26 58892 typ srflx raddr 192.168.0.8 rport 58892","sdpMid":"sdparta_0","sdpMLineIndex":0}} --- From Session-ID 0
+2016-12-22 22:55:25.913  INFO 9763 --- [nio-8443-exec-7] o.kurento.tutorial.player.PlayerHandler  : Incoming Message {"id":"onIceCandidate","candidate":{"candidate":"candidate:2 2 UDP 1686052606 66.75.56.26 57143 typ srflx raddr 192.168.0.8 rport 57143","sdpMid":"sdparta_0","sdpMLineIndex":0}} --- From Session-ID 0
+2016-12-22 22:55:33.838  INFO 9763 --- [nio-8443-exec-9] o.kurento.tutorial.player.PlayerHandler  : Incoming Message {"id":"pause"} --- From Session-ID 0
+2016-12-22 22:55:33.840  INFO 9763 --- [nio-8443-exec-9] o.k.t.player.FrameSaverPluginProxy       : FrameSaverPluginProxy.setOneParam: name=wait  value=0  ok=true
+2016-12-22 22:55:37.686  INFO 9763 --- [nio-8443-exec-8] o.kurento.tutorial.player.PlayerHandler  : Incoming Message {"id":"resume"} --- From Session-ID 0
+2016-12-22 22:55:37.688  INFO 9763 --- [nio-8443-exec-8] o.k.t.player.FrameSaverPluginProxy       : FrameSaverPluginProxy.setOneParam: name=snap  value=1000,8,2  ok=true
+2016-12-22 22:55:37.689  INFO 9763 --- [nio-8443-exec-8] o.k.t.player.FrameSaverPluginProxy       : FrameSaverPluginProxy.setOneParam: name=wait  value=5  ok=true
+2016-12-22 22:55:43.475  INFO 9763 --- [nio-8443-exec-2] o.kurento.tutorial.player.PlayerHcd ..andler  : Incoming Message {"id":"stop"} --- From Session-ID 0
+2016-12-22 22:55:43.477  INFO 9763 --- [nio-8443-exec-2] o.k.t.player.FrameSaverPluginProxy       : FrameSaverPluginProxy.setOneParam: name=wait  value=0  ok=true
+^C2016-12-22 22:55:51.317  INFO 9763 --- [       Thread-2] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@91d5f71: startup date [Thu Dec 22 22:55:13 PST 2016]; root of context hierarchy
+
+2016-12-22 22:55:51.318  INFO 9763 --- [       Thread-2] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+
+2016-12-22 22:55:51.319  INFO 9763 --- [       Thread-2] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+
+2016-12-22 22:55:51.322  INFO 9763 --- [ntLoopGroup-2-1] o.k.j.c.JsonRpcClientNettyWebSocket      : [KurentoClient]  channel closed
+
+2016-12-22 22:55:51.325  INFO 9763 --- [       Thread-2] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver $ ls -al
+total 48
+drwxr-xr-x 4 jonny jonny  4096 Nov 29 15:41 .
+drwxr-xr-x 4 jonny jonny  4096 Dec 22 22:22 ..
+-rw-r--r-- 1 jonny jonny    46 Nov 29 15:40 .bowerrc
+-rw-r--r-- 1 jonny jonny 11357 Nov 29 15:40 LICENSE
+drwxr-xr-x 4 jonny jonny  4096 Nov 29 15:40 package
+-rw-r--r-- 1 jonny jonny  5026 Nov 29 15:41 pom.xml
+-rw-r--r-- 1 jonny jonny  5164 Nov 29 15:40 README.md
+drwxr-xr-x 4 jonny jonny  4096 Nov 29 15:40 src
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver $ cd src/main/java/org/kurento/tutorial/one2onecall/
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver/src/main/java/org/kurento/tutorial/one2onecall $ cp /home/jonny/Work/TELMATE/kurento-tutorial-java/APP-kurento-one2one-call-with-frame-saver/src/main/java/org/kurento/tutorial/one2onecall/*.java .
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver/src/main/java/org/kurento/tutorial/one2onecall $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver/src/main/java/org/kurento/tutorial/one2onecall $ ls -al
+
+total 48
+drwxr-xr-x 2 jonny jonny  4096 Dec 22 23:10 .
+drwxr-xr-x 3 jonny jonny  4096 Nov 29 15:40 ..
+-rw-r--r-- 1 jonny jonny 10823 Dec 22 23:07 CallHandler.java
+-rw-r--r-- 1 jonny jonny  4699 Dec 22 23:10 CallMediaPipeline.java
+-rw------- 1 jonny jonny  6273 Dec 22 23:10 FrameSaverPluginProxy.java
+-rw-r--r-- 1 jonny jonny  1882 Dec 22 23:07 One2OneCallApp.java
+-rw-r--r-- 1 jonny jonny  1941 Dec 22 23:07 UserRegistry.java
+-rw-r--r-- 1 jonny jonny  3032 Dec 22 23:07 UserSession.java
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver/src/main/java/org/kurento/tutorial/one2onecall $ 
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver $ mvn compile
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Kurento Java Tutorial - One2One Call 6.6.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.4.1:enforce (enforce-java-version) @ kurento-one2one-call ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.4.1:enforce (enforce-maven-version) @ kurento-one2one-call ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.4.1:enforce (enforce-bytecode-version) @ kurento-one2one-call ---
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.4:create-timestamp (get-build-timestamp) @ kurento-one2one-call ---
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.4:create (get-scm-revision) @ kurento-one2one-call ---
+[INFO] Executing: /bin/sh -c cd '/home/jonny/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver' && 'git' 'rev-parse' '--verify' 'HEAD'
+[INFO] Working directory: /home/jonny/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver
+[INFO] Storing buildNumber: UNKNOWN at timestamp: 1482477344101
+[WARNING] Cannot get the branch information from the git repository: 
+Detecting the current branch failed: fatal: Not a git repository (or any of the parent directories): .git
+
+[INFO] Executing: /bin/sh -c cd '/home/jonny/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver' && 'git' 'rev-parse' '--verify' 'HEAD'
+[INFO] Working directory: /home/jonny/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ kurento-one2one-call ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 13 resources
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.3:compile (default-compile) @ kurento-one2one-call ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 8 source files to /home/jonny/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver/target/classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.7
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 3.309s
+[INFO] Finished at: Thu Dec 22 23:15:45 PST 2016
+[INFO] Final Memory: 33M/521M
+[INFO] ------------------------------------------------------------------------
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver $ mvn exec:java
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Kurento Java Tutorial - One2One Call 6.6.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- exec-maven-plugin:1.4.0:java (default-cli) @ kurento-one2one-call ---
+
+   .------------------------------------.
+   |                                    |
+   |   | |/ /  _ _ _ ___ _ _| |_ ___    |
+   |   | ' < || | '_/ -_) ' \  _/ _ \   |
+   |   |_|\_\_,_|_| \___|_||_\__\___/   |
+   |                                    |
+   '------------------------------------'
+       Kurento Java Tutorial - One2One Call
+       Version 6.6.0
+
+2016-12-22 23:15:56.005  INFO 10539 --- [eCallApp.main()] o.k.tutorial.one2onecall.One2OneCallApp  : Starting One2OneCallApp on XPS-15-JB1-LNX17 with PID 10539 (/home/jonny/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver/target/classes started by jonny in /home/jonny/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver)
+2016-12-22 23:15:56.009  INFO 10539 --- [eCallApp.main()] o.k.tutorial.one2onecall.One2OneCallApp  : No active profile set, falling back to default profiles: default
+2016-12-22 23:15:56.143  INFO 10539 --- [eCallApp.main()] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@7dc29553: startup date [Thu Dec 22 23:15:56 PST 2016]; root of context hierarchy
+2016-12-22 23:15:56.811  INFO 10539 --- [eCallApp.main()] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2016-12-22 23:15:57.204  INFO 10539 --- [eCallApp.main()] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8443 (https)
+2016-12-22 23:15:57.216  INFO 10539 --- [eCallApp.main()] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2016-12-22 23:15:57.217  INFO 10539 --- [eCallApp.main()] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.0.28
+2016-12-22 23:15:57.286  INFO 10539 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2016-12-22 23:15:57.286  INFO 10539 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1147 ms
+2016-12-22 23:15:57.556  INFO 10539 --- [ost-startStop-1] o.s.b.c.e.ServletRegistrationBean        : Mapping servlet: 'dispatcherServlet' to [/]
+2016-12-22 23:15:57.561  INFO 10539 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-12-22 23:15:57.561  INFO 10539 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2016-12-22 23:15:57.561  INFO 10539 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2016-12-22 23:15:57.561  INFO 10539 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'requestContextFilter' to: [/*]
+2016-12-22 23:15:57.618  INFO 10539 --- [eCallApp.main()] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'defaultSockJsTaskScheduler'
+2016-12-22 23:15:57.755  INFO 10539 --- [eCallApp.main()] org.eclipse.jetty.util.log               : Logging initialized @4213ms
+2016-12-22 23:15:57.898  INFO 10539 --- [ntLoopGroup-2-1] o.k.j.c.JsonRpcClientNettyWebSocket      : [KurentoClient]  Inititating new Netty channel. Will create new handler too!
+2016-12-22 23:15:57.999  INFO 10539 --- [eCallApp.main()] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/call] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2016-12-22 23:15:58.131  INFO 10539 --- [eCallApp.main()] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@7dc29553: startup date [Thu Dec 22 23:15:56 PST 2016]; root of context hierarchy
+2016-12-22 23:15:58.191  INFO 10539 --- [eCallApp.main()] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-12-22 23:15:58.192  INFO 10539 --- [eCallApp.main()] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-12-22 23:15:58.195  INFO 10539 --- [eCallApp.main()] o.s.w.s.c.a.WebMvcConfigurerAdapter      : Adding welcome page: class path resource [static/index.html]
+2016-12-22 23:15:58.204  INFO 10539 --- [eCallApp.main()] o.s.w.s.handler.SimpleUrlHandlerMapping  : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2016-12-22 23:15:58.275  INFO 10539 --- [eCallApp.main()] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-22 23:15:58.275  INFO 10539 --- [eCallApp.main()] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-22 23:15:58.306  INFO 10539 --- [eCallApp.main()] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-22 23:15:58.411  INFO 10539 --- [eCallApp.main()] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2016-12-22 23:15:58.417  INFO 10539 --- [eCallApp.main()] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2016-12-22 23:15:58.630  INFO 10539 --- [eCallApp.main()] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8443 (https)
+2016-12-22 23:15:58.634  INFO 10539 --- [eCallApp.main()] o.k.tutorial.one2onecall.One2OneCallApp  : Started One2OneCallApp in 2.824 seconds (JVM running for 5.095)
+2016-12-22 23:16:06.650  INFO 10539 --- [nio-8443-exec-7] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2016-12-22 23:16:06.651  INFO 10539 --- [nio-8443-exec-7] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2016-12-22 23:16:06.658  INFO 10539 --- [nio-8443-exec-7] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 7 ms
+2016-12-22 23:16:37.890  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : FrameSaverPluginProxy.newInstance(%s) 
+
+2016-12-22 23:16:37.911  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : FramesSaver WAS CREATED
+2016-12-22 23:16:37.911  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.CallMediaPipeline      : CallMediaPipeline.c'tor --- (%s) 
+
+2016-12-22 23:16:37.917  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : FrameSaverPluginProxy.setOneParam: name=wait  value=1000  ok=true
+2016-12-22 23:16:37.920  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : FrameSaverPluginProxy.setOneParam: name=snap  value=1000,9,2  ok=true
+2016-12-22 23:16:37.923  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : FrameSaverPluginProxy.setOneParam: name=link  value=auto,auto,auto  ok=true
+2016-12-22 23:16:37.925  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : FrameSaverPluginProxy.setOneParam: name=pads  value=auto,auto,auto  ok=true
+2016-12-22 23:16:37.927  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : FrameSaverPluginProxy.setOneParam: name=path  value=auto  ok=true
+2016-12-22 23:16:37.929  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : FrameSaverPluginProxy.setOneParam: name=path  value=/tmp/FrameSaver1_Caller_To_Callee  ok=true
+
+2016-12-22 23:16:37.933  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : CONNECTED:   aFromElement-->>--mFramesSaverFilter-->>--aIntoElement
+
+2016-12-22 23:16:37.935  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : mFramesSaverFilter.ElementsNames: (kmsfilterelement2,fakesink24,tee24,kmsagnosticbin2-9,framesaverplugin2,queue18,kmsagnosticbin2-8,) 
+
+2016-12-22 23:16:37.937  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : FrameSaverPluginProxy.setOneParam: name=wait  value=1000  ok=true
+2016-12-22 23:16:37.938  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : FrameSaverPluginProxy.newInstance(%s) 
+
+2016-12-22 23:16:37.944  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : FramesSaver WAS CREATED
+2016-12-22 23:16:37.944  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.CallMediaPipeline      : CallMediaPipeline.c'tor --- (%s) 
+
+2016-12-22 23:16:37.947  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : FrameSaverPluginProxy.setOneParam: name=wait  value=1000  ok=true
+2016-12-22 23:16:37.952  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : FrameSaverPluginProxy.setOneParam: name=snap  value=1000,9,2  ok=true
+2016-12-22 23:16:37.955  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : FrameSaverPluginProxy.setOneParam: name=link  value=auto,auto,auto  ok=true
+2016-12-22 23:16:37.957  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : FrameSaverPluginProxy.setOneParam: name=pads  value=auto,auto,auto  ok=true
+2016-12-22 23:16:37.959  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : FrameSaverPluginProxy.setOneParam: name=path  value=auto  ok=true
+2016-12-22 23:16:37.961  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : FrameSaverPluginProxy.setOneParam: name=path  value=/tmp/FrameSaver2_Callee_To_Caller  ok=true
+
+2016-12-22 23:16:37.963  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : CONNECTED:   aFromElement-->>--mFramesSaverFilter-->>--aIntoElement
+
+2016-12-22 23:16:37.965  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : mFramesSaverFilter.ElementsNames: (kmsfilterelement3,fakesink27,tee27,kmsagnosticbin2-11,framesaverplugin3,queue19,kmsagnosticbin2-10,) 
+
+2016-12-22 23:16:37.966  INFO 10539 --- [nio-8443-exec-7] o.k.t.one2onecall.FrameSaverPluginProxy  : FrameSaverPluginProxy.setOneParam: name=wait  value=1000  ok=true
+
+^C2016-12-22 23:17:02.951  INFO 10539 --- [       Thread-2] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@7dc29553: startup date [Thu Dec 22 23:15:56 PST 2016]; root of context hierarchy
+
+2016-12-22 23:17:02.952  INFO 10539 --- [       Thread-2] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+
+2016-12-22 23:17:02.953  INFO 10539 --- [       Thread-2] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+
+2016-12-22 23:17:02.956  INFO 10539 --- [ntLoopGroup-2-1] o.k.j.c.JsonRpcClientNettyWebSocket      : [KurentoClient]  channel closed
+
+2016-12-22 23:17:02.959  INFO 10539 --- [       Thread-2] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'defaultSockJsTaskScheduler'
+
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver $ 
+jonny@XPS-15-JB1-LNX17 ~/Work/TELMATE/kms_tutorial_apps/APP-Java-For-one2one-call-with-two-way-frame-saver $ 
+
+
