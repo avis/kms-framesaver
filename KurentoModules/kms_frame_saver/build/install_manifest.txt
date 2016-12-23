@@ -1,0 +1,12 @@
+/usr/lib/x86_64-linux-gnu/libkmsframesavervideofilterinterface.a
+/usr/include/kurento/modules/framesavervideofilter/FrameSaverVideoFilter.hpp
+/usr/lib/x86_64-linux-gnu/pkgconfig/kmsframesavervideofilter.pc
+/usr/lib/x86_64-linux-gnu/libkmsframesavervideofilterimpl.so.0.0.1~0.g7f75ff1
+/usr/lib/x86_64-linux-gnu/libkmsframesavervideofilterimpl.so.0
+/usr/lib/x86_64-linux-gnu/libkmsframesavervideofilterimpl.so
+/usr/include/kurento/modules/framesavervideofilter/FrameSaverVideoFilterImpl.hpp
+/usr/include/kurento/modules/framesavervideofilter/FrameSaverVideoFilterImplFactory.hpp
+/usr/lib/x86_64-linux-gnu/kurento/modules/libkmsframesavervideofiltermodule.so
+/usr/share/cmake-2.8/Modules/FindKMSFRAMESAVERVIDEOFILTER.cmake
+/usr/share/kurento/modules/framesavervideofilter.kmd.json
+/usr/lib/x86_64-linux-gnu/gstreamer-1.5/libkms_frame_saver_video_filter.so

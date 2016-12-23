@@ -1,0 +1,6 @@
+/home/jonny/Work/TELMATE/kms_frame_saver/build/src/server/CMakeFiles/java.dir
+/home/jonny/Work/TELMATE/kms_frame_saver/build/src/server/CMakeFiles/java_install.dir
+/home/jonny/Work/TELMATE/kms_frame_saver/build/src/gst-plugins/CMakeFiles/kms_frame_saver_video_filter.dir
+/home/jonny/Work/TELMATE/kms_frame_saver/build/src/server/CMakeFiles/kmsframesavervideofilterimpl.dir
+/home/jonny/Work/TELMATE/kms_frame_saver/build/src/server/CMakeFiles/kmsframesavervideofilterinterface.dir
+/home/jonny/Work/TELMATE/kms_frame_saver/build/src/server/CMakeFiles/kmsframesavervideofiltermodule.dir

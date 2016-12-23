@@ -1,0 +1,8 @@
+# Hashes of file build rules.
+76cd45cf886bcc28f47deeaecf47d7da src/server/CMakeFiles/java
+176badaed2c3fbf5464bbda4d3da1ad6 src/server/CMakeFiles/java_install
+6887bfda87ed2e6dd3967c988529a3cf src/server/cpp_interface.generated
+84911c338206be5df6edea920a255245 src/server/cpp_interface_internal.generated
+609c3212d7bf82a3ec97bffc07e8c0c6 src/server/cpp_module.generated
+f942d952a771f5064ee53ded9540c5c8 src/server/cpp_server_internal.generated
+96514d7dc0b51ec2ed79af7aa1ade230 src/server/framesavervideofilter.kmd.json
