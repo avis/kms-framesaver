@@ -1,0 +1,20 @@
+{
+  "remoteClasses": [
+    {
+      "name": "kms_frame_saver",
+      "extends": "Filter",
+      "doc": "kms_frame_saver interface. Documentation about the module",
+      "constructor": {
+	"doc": "Create an element",
+	"params": [
+	  {
+	    "name": "mediaPipeline",
+	    "doc": "the parent :rom:cls:`MediaPipeline`",
+	    "type": "MediaPipeline",
+	    "final": true
+	  }
+	]
+      }
+    }
+  ]
+}

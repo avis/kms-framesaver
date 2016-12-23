@@ -1,0 +1,27 @@
+include_directories(
+  ${GSTREAMER_INCLUDE_DIRS}
+  ${GSTREAMER_VIDEO_INCLUDE_DIRS}
+  ${CMAKE_CURRENT_SOURCE_DIR}
+  ${OPENCV_INCLUDE_DIRS}
+)
+
+set(KMS_FRAME_SAVER_SOURCES
+  kms_frame_saver.c
+  gstkms_frame_saver.cpp
+  gstkms_frame_saver.h
+)
+
+add_library(kms_frame_saver MODULE ${KMS_FRAME_SAVER_SOURCES})
+
+target_link_libraries(kms_frame_saver
+  ${GSTREAMER_LIBRARIES}
+  ${GSTREAMER_VIDEO_LIBRARIES}
+  ${OPENCV_LIBRARIES}
+)
+
+install(
+  TARGETS kms_frame_saver
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_GST_PLUGINS_DIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
