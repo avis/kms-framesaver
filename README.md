@@ -1,10 +1,10 @@
-==========================================================================================================================================| 
++ =======================================| 
 + File: README.md
-==========================================================================================================================================| 
++ =======================================| 
 + 
 + Note: The folder "Documents" has files describing how to build the Kurento Module, and how to build the Java web-apps.
 + 
-==========================================================================================================================================| 
++ =======================================| 
 + 
 + Example: How the "Frame-Saver" is used in the Java app ".\Validation\kms_tutorial_apps\APP-Java-For-player-with-one-way-frame-saver"
 + 
@@ -24,7 +24,7 @@
 +   B6. In "FrameSaverPluginProxy" the method "getElementNames()" is not relevant because Kurento encloses the "FrameSaver" in a container.
 +   B7. In "FrameSaverPluginProxy" the method "setSpliceLinkAfter()" is not relevant for the same reasson as mentioned in B6.
 + 
-==========================================================================================================================================| 
++ =======================================| 
 + 
 + About The Saved Image Files:
 + 
@@ -34,6 +34,6 @@
 +   C4: The meaning of C3: Image format RGB(8,8,8), 640 pixels width, 480 pixel height, 8 bits per color, 4th capture at 6041 ms after 1st.
 +   C5: One saved image file holds a PNG structure for exactly one captured video frame.
 + 
-==========================================================================================================================================| 
++ =======================================| 
 + 
 + ends file: README.md
