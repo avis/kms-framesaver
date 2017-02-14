@@ -1,11 +1,12 @@
 /* 
  * ======================================================================================
- * File:        FrameSaverPluginProxy.c
+ * File:        FrameSaverPluginProxy.java
  * 
  * History:     1. 2016-11-28   JBendor     Created
- *              5. 2016-12-22   JBendor     Updated
+ *              2. 2016-12-22   JBendor     Updated
+ *              3. 2017-02-14   JBendor     Cosmetic
  *
- * Description: Implements a proxy for a Kurento module: FrameSaverVideoFilterPlugin
+ * Description: Implements a proxy for the Kurento module: FrameSaverVideoFilterPlugin
  *
  * Copyright (c) 2016 TELMATE INC. All Rights Reserved. Proprietary and confidential.
  *               Unauthorized copying of this file is strictly prohibited.
@@ -24,12 +25,11 @@ import org.slf4j.LoggerFactory;
 
 public class FrameSaverPluginProxy
 {
-    private String TheDefaultParams[] = { "wait=1000",             // wait 1 second before saving --- forever iff 0
-                                          "snap=1000,9,2",         // 1000 ms intervals, limit 9 frames or 2 errors 
+    private String TheDefaultParams[] = { "wait=1000",             // wait 1000 millis before 1st save (0 = forever)
+                                          "snap=1000,11,2",        // 1000 ms intervals, limit 11 frames or 2 errors 
                                           "link=auto,auto,auto",   // link in pipeline of the elements to be spliced
                                           "pads=auto,auto,auto",   // pads spliced by TEE (occurs after the waiting period)
-                                          "path=auto"              // working folder (frames will be stored in sub-folders)
-                                        };  
+                                          "path=auto" };           // working folder (frames will be stored in sub-folders)
     
     private static final Logger     TheLogger = LoggerFactory.getLogger(FrameSaverPluginProxy.class);
     
