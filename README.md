@@ -30,8 +30,8 @@
 + 
 +   C1: The "FrameSaver" creates a new sub-folder whenever it is ready to save the first frame after a "standby/waiting" period.
 +   C2: The name of a sub-folder has the format "IMAGES_YYYYMMDD_HHmmss" --- The paremeter "path=" defines the parent folder (deafult=CWD).
-+   C3: The name of a saved image file has the format "FMT_WDTxHGTxPIX.@SSSS_MMM.+ INDEX.png" --- example: "RGB_640x480x8.@0006_041.+ 4.png".
-+   C4: The meaning of C3: Image format RGB(8,8,8), 640 pixels width, 480 pixel height, 8 bits per color, 4th capture at 6041 ms after 1st.
++   C3: The name of a saved image file has the format "FMT_WDTxHGTxPIX.@SSSS_MMM.#INDEX.png" --- example: "RGB_640x480x8.@0006_041.#4.png".
++   C4: The meaning of C3: Image format RGB(8,8,8), 640 pixels width, 480 pixel height, 8 bits per color, image #4, 6.041 seconds after #1.
 +   C5: One saved image file holds a PNG structure for exactly one captured video frame.
 + 
 + =======================================| 
