@@ -1,7 +1,7 @@
-/* 
+/*
  * ======================================================================================
  * File:        frame_saver_filter.c
- * 
+ *
  * History:     1. 2016-10-14   JBendor     Created
  *              2. 2016-10-28   JBendor     Updated
  *              3. 2016-10-29   JBendor     Removed parameters code to new file
@@ -14,7 +14,7 @@
  *              The baseline TEE example code is in this URL:
  *              http://tordwessman.blogspot.com/2013/06/gstreamer-tee-code-example.html
  *
- *              The following URL describes Gstreamer streaming: 
+ *              The following URL describes Gstreamer streaming:
  *              http://www.einarsundgren.se/gstreamer-basic-real-time-streaming-tutorial
  *
  * Copyright (c) 2016 TELMATE INC. All Rights Reserved. Proprietary and confidential.
@@ -53,9 +53,9 @@
 //=======================================================================================
 // custom types
 //=======================================================================================
-typedef enum 
-{ 
-    e_PIPELINE_MAKER_ERROR_NONE = 0, 
+typedef enum
+{
+    e_PIPELINE_MAKER_ERROR_NONE = 0,
     e_PIPELINE_PARSER_HAS_ERROR = 1,
     e_FAILED_MAKE_MINI_PIPELINE = e_PIPELINE_PARSER_HAS_ERROR,
     e_FAILED_MAKE_PIPELINE_NAME = 2,
@@ -68,10 +68,10 @@ typedef enum
 } PIPELINE_MAKER_ERROR_e;
 
 
-typedef enum 
-{ 
-    e_TEE_INSERT_ENDED = 0, 
-    e_TEE_INSERT_WAITS = 1, 
+typedef enum
+{
+    e_TEE_INSERT_ENDED = 0,
+    e_TEE_INSERT_WAITS = 1,
     e_TEE_INSERT_ERROR = 2,
     e_FAIL_UNLINK_PADS = 3,
     e_FAIL_TEE_IN_PADS = 4,
@@ -83,9 +83,9 @@ typedef enum
 } e_TEE_INSERT_STATE_e;
 
 
-typedef enum 
-{ 
-    e_SPLICER_STATE_NONE = 0, 
+typedef enum
+{
+    e_SPLICER_STATE_NONE = 0,
     e_SPLICER_STATE_BUSY = 1,
     e_SPLICER_STATE_DONE = 2,
     e_SPLICER_STATE_USED = 3,
@@ -265,7 +265,7 @@ static gint do_save_frame_buffer(GstBuffer     * aBufferPtr,
                                  const char    * aCapsPtr,
                                  FramesSaver_t * aSaverPtr)
 {
-    /* 
+    /*
     * NOTE-1: image height can depend on the pixel-aspect-ratio of the source.
     *
     * NOTE-2: stride of video buffers is rounded to the nearest multiple of 4.
@@ -280,13 +280,13 @@ static gint do_save_frame_buffer(GstBuffer     * aBufferPtr,
 
     int     format_is_I420 = (strstr(aCapsPtr, "I420") != NULL);
 
-    int  cols = 0, 
-         rows = 0, 
+    int  cols = 0,
+         rows = 0,
          bits = 8,
          errs = pipeline_params_parse_caps(aCapsPtr,
-                                           sz_image_format, 
-                                           &cols, 
-                                           &rows, 
+                                           sz_image_format,
+                                           &cols,
+                                           &rows,
                                            &bits);
 
     if ( (errs != 0) || (rows < 1) || (cols < 1) )
@@ -317,19 +317,19 @@ static gint do_save_frame_buffer(GstBuffer     * aBufferPtr,
     guint elapsed_ms = (guint) ((now - The_LaunchTime_ns) / NANOS_PER_MILLISEC);
 
     aSaverPtr->num_saved_frames += 1;
-    
+
     if ( strncmp(sz_image_format, "BGR", 3) == 0 )
     {
-        convert_BGR_frame_to_RGB(map.data, pix_size * 8, stride, cols, rows);
+        convert_BGR_frame_to_RGB(map.data, pix_size * 8, stride, cols, rows, data_lng);
         sz_image_format[0] = 'R';
         sz_image_format[2] = 'B';
     }
 
-    sprintf(sz_image_path, 
+    sprintf(sz_image_path,
             "%s%c%s_%dx%dx%d.@%04u_%03u.#%u.png",             // "f:/telmate/junk/"
             aSaverPtr->work_folder_path, PATH_DELIMITER,
-            (format_is_I420 ? "I420_RGB" : sz_image_format), 
-            cols, 
+            (format_is_I420 ? "I420_RGB" : sz_image_format),
+            cols,
             rows,
             (format_is_I420 ? 24 : bits),
             elapsed_ms / 1000,
@@ -361,8 +361,8 @@ static gint do_save_frame_buffer(GstBuffer     * aBufferPtr,
 //
 // appsink callback for new-frame events
 //=======================================================================================
-static GstFlowReturn do_appsink_callback_for_new_frame(GstAppSink * aAppSinkPtr, 
-                                                       gpointer     aContextPtr) 
+static GstFlowReturn do_appsink_callback_for_new_frame(GstAppSink * aAppSinkPtr,
+                                                       gpointer     aContextPtr)
 {
     GstFlowReturn   flow_result = GST_FLOW_OK;
 
@@ -641,15 +641,15 @@ static GstElement* do_appsink_create(FramesSaver_t * aSaverPtr, const char * aNa
 //
 // establishes an acceptable CAPS for linked pads
 //=======================================================================================
-static gboolean do_splicer_negotiate_pads_caps(GstPad    * aPadPtr, 
-                                               GstObject * aCtxPtr, 
+static gboolean do_splicer_negotiate_pads_caps(GstPad    * aPadPtr,
+                                               GstObject * aCtxPtr,
                                                GstQuery  * aQueryPtr)
 {
     FlowSplicer_t * splicer_ptr = (FlowSplicer_t *) aCtxPtr;
 
     gint query_id = GST_QUERY_TYPE(aQueryPtr);
 
-    if (query_id != GST_QUERY_CAPS) 
+    if (query_id != GST_QUERY_CAPS)
     {
         return gst_pad_query_default(aPadPtr, aCtxPtr, aQueryPtr);
     }
@@ -663,20 +663,20 @@ static gboolean do_splicer_negotiate_pads_caps(GstPad    * aPadPtr,
 
     GstCaps * ptr_all_caps = peer_is_from ? splicer_ptr->ptr_all_from_caps : splicer_ptr->ptr_all_into_caps;
 
-    GstCaps * ptr_query_caps;    
+    GstCaps * ptr_query_caps;
 
-    GstCaps * ptr_final_caps; 
+    GstCaps * ptr_final_caps;
 
     gst_query_parse_caps(aQueryPtr, &ptr_query_caps);
 
-    ptr_final_caps = ptr_query_caps; 
+    ptr_final_caps = ptr_query_caps;
 
     if (ptr_all_caps != NULL)
     {
         int idx = gst_caps_get_size(ptr_all_caps);
 
         // discard sample-rate to allow ANY rate supported by linked elements
-        while ( --idx >= 0) 
+        while ( --idx >= 0)
         {
             GstStructure *structure = gst_caps_get_structure(ptr_all_caps, idx);
             gst_structure_remove_field (structure, "rate");
@@ -684,14 +684,14 @@ static gboolean do_splicer_negotiate_pads_caps(GstPad    * aPadPtr,
 
         // the returned CAPS must "intersect" with the pad-template-caps
         GstCaps * ptr_template = gst_pad_get_pad_template_caps(aPadPtr);
-        if (ptr_template) 
+        if (ptr_template)
         {
             ptr_final_caps = gst_caps_intersect(ptr_all_caps, ptr_template);
             gst_caps_unref(ptr_template);
         }
 
         // possibly --- match with the query filter
-        if (ptr_query_caps) 
+        if (ptr_query_caps)
         {
             ptr_final_caps = gst_caps_intersect(ptr_all_caps, ptr_query_caps);
             gst_caps_unref (ptr_query_caps);
@@ -706,14 +706,14 @@ static gboolean do_splicer_negotiate_pads_caps(GstPad    * aPadPtr,
     return TRUE;
 }
 
- 
+
 //=======================================================================================
 // synopsis: result = do_callback_for_consumer_INP_pad_events(aPadPtr, aInfoPtr, aCtxPtr)
 //
 // splicer callback for producer-element-output-pad events
 //=======================================================================================
-static gboolean do_callback_for_consumer_INP_pad_events(GstPad    * aPadPtr, 
-                                                        GstObject * aCtxPtr, 
+static gboolean do_callback_for_consumer_INP_pad_events(GstPad    * aPadPtr,
+                                                        GstObject * aCtxPtr,
                                                         GstEvent  * aEventPtr)
 {
     FlowSplicer_t * splicer_ptr = (FlowSplicer_t *) aCtxPtr;
@@ -744,8 +744,8 @@ static gboolean do_callback_for_consumer_INP_pad_events(GstPad    * aPadPtr,
 //
 // splicer callback for consumer-element-input-pad events
 //=======================================================================================
-static GstPadProbeReturn do_splicer_callback_for_consumer_inp_pad(GstPad          * aPadPtr, 
-                                                                  GstPadProbeInfo * aInfoPtr, 
+static GstPadProbeReturn do_splicer_callback_for_consumer_inp_pad(GstPad          * aPadPtr,
+                                                                  GstPadProbeInfo * aInfoPtr,
                                                                   gpointer          aCtxPtr)
 {
     FlowSplicer_t * splicer_ptr = (FlowSplicer_t *) aCtxPtr;
@@ -753,7 +753,7 @@ static GstPadProbeReturn do_splicer_callback_for_consumer_inp_pad(GstPad        
     GstEvent* event_data_ptr = GST_PAD_PROBE_INFO_DATA(aInfoPtr);
 
     GstEventType  event_type = GST_EVENT_TYPE(event_data_ptr);
-     
+
     if (event_type != GST_EVENT_EOS)
     {
         return GST_PAD_PROBE_PASS;
@@ -763,7 +763,7 @@ static GstPadProbeReturn do_splicer_callback_for_consumer_inp_pad(GstPad        
 
     gst_pad_remove_probe(aPadPtr, GST_PAD_PROBE_INFO_ID(aInfoPtr));
 
-    GstPad * ptr_out_pad = gst_element_get_static_pad(splicer_ptr->ptr_into_element, 
+    GstPad * ptr_out_pad = gst_element_get_static_pad(splicer_ptr->ptr_into_element,
                                                       splicer_ptr->params.consumer_out_pad_name);
 
     // possibly --- send EOS onto the consumer OUT pad --- possibly redundant
@@ -785,8 +785,8 @@ static GstPadProbeReturn do_splicer_callback_for_consumer_inp_pad(GstPad        
 //
 // splicer callback for producer-element-output-pad events
 //=======================================================================================
-static GstPadProbeReturn do_callback_for_splicer_producer_pad(GstPad          * aPadPtr, 
-                                                              GstPadProbeInfo * aInfoPtr, 
+static GstPadProbeReturn do_callback_for_splicer_producer_pad(GstPad          * aPadPtr,
+                                                              GstPadProbeInfo * aInfoPtr,
                                                               gpointer          aCtxPtr)
 {
     FlowSplicer_t * splicer_ptr = (FlowSplicer_t *) aCtxPtr;
@@ -798,7 +798,7 @@ static GstPadProbeReturn do_callback_for_splicer_producer_pad(GstPad          * 
     // remove the producer-pad-probe
     gst_pad_remove_probe(aPadPtr, probe_info_id);
 
-    GstPad * ptr_inp_pad = gst_element_get_static_pad(splicer_ptr->ptr_into_element, 
+    GstPad * ptr_inp_pad = gst_element_get_static_pad(splicer_ptr->ptr_into_element,
                                                       splicer_ptr->params.consumer_inp_pad_name);
 
     // install consumer-inp-pad-probe for EOS event
@@ -902,8 +902,8 @@ static gboolean do_splicer_unlink_two_elements(FramesSaver_t * aSaverPtr)
 
     // apply probe to 'producer' pad --- stop data flow into consumer element
     gst_pad_add_probe(splicer_ptr->ptr_from_pad,
-                      GST_PAD_PROBE_TYPE_BLOCK_DOWNSTREAM, 
-                      do_callback_for_splicer_producer_pad, 
+                      GST_PAD_PROBE_TYPE_BLOCK_DOWNSTREAM,
+                      do_callback_for_splicer_producer_pad,
                       splicer_ptr,
                       NULL);
 
@@ -918,9 +918,9 @@ static gboolean do_splicer_unlink_two_elements(FramesSaver_t * aSaverPtr)
 //=======================================================================================
 static gint do_splicer_configure_TEE_pads(FramesSaver_t * aSaverPtr)
 {
-    GstPad  * tee_Q1_pad_ptr, 
+    GstPad  * tee_Q1_pad_ptr,
             * tee_Q2_pad_ptr,
-            * queue1_pad_ptr, 
+            * queue1_pad_ptr,
             * queue2_pad_ptr;
 
     GstElementClass * class_ptr = GST_ELEMENT_GET_CLASS(aSaverPtr->tee_element_ptr);
@@ -929,13 +929,13 @@ static gint do_splicer_configure_TEE_pads(FramesSaver_t * aSaverPtr)
 
     if (! pad_template_ptr)
     {
-        g_warning("Unable to get pad template");        
+        g_warning("Unable to get pad template");
         return 0;
     }
 
     tee_Q1_pad_ptr = gst_element_request_pad(aSaverPtr->tee_element_ptr,
-                                             pad_template_ptr, 
-                                             NULL, 
+                                             pad_template_ptr,
+                                             NULL,
                                              NULL);
 
     // g_print("Got request pad (%s) for tee-branch-Q1 \n", gst_pad_get_name(tee_Q1_pad_ptr));
@@ -943,8 +943,8 @@ static gint do_splicer_configure_TEE_pads(FramesSaver_t * aSaverPtr)
     queue1_pad_ptr = gst_element_get_static_pad(aSaverPtr->Q_1_element_ptr, "sink");
 
     tee_Q2_pad_ptr = gst_element_request_pad(aSaverPtr->tee_element_ptr,
-                                             pad_template_ptr, 
-                                             NULL, 
+                                             pad_template_ptr,
+                                             NULL,
                                              NULL);
 
     // g_print("Got request pad (%s) for tee-branch-Q2 \n", gst_pad_get_name(tee_Q2_pad_ptr));
@@ -1007,7 +1007,7 @@ static gint do_frame_saver_element_cleanup(FramesSaver_t * aSaverPtr)
 // handle pipeline's bus messages --- returns TRUE on success, else rrror
 //=======================================================================================
 static gboolean do_pipeline_callback_for_bus_messages(GstBus     * aBusPtr,
-                                                      GstMessage * aMsgPtr, 
+                                                      GstMessage * aMsgPtr,
                                                       gpointer     aCtxPtr)
 {
     const GstStructure * gst_struct_ptr;
@@ -1063,12 +1063,12 @@ static gboolean do_pipeline_callback_for_bus_messages(GstBus     * aBusPtr,
         GstState old_state, new_state, pending_state;
 
         gst_message_parse_state_changed(aMsgPtr, &old_state, &new_state, &pending_state);
-        
+
         g_print(PREFIX_FORMAT "bus_msg=STATE --- old=%i  new=%i  pending=%i. \n", saver_ID, old_state, new_state, pending_state);
     }
     else
     {
-        const char * psz_msg_type_name = GST_MESSAGE_TYPE_NAME(aMsgPtr); 
+        const char * psz_msg_type_name = GST_MESSAGE_TYPE_NAME(aMsgPtr);
 
         int msg_time = (int) aMsgPtr->timestamp;
 
@@ -1140,7 +1140,7 @@ static e_TEE_INSERT_STATE_e  do_pipeline_insert_TEE_splicer(FramesSaver_t * aSav
     {
         if (! gst_pad_unlink(splicer_ptr->ptr_from_pad, splicer_ptr->ptr_into_pad))
         {
-            g_warning("Unable to unlink pads of connected pipeline elements \n");       
+            g_warning("Unable to unlink pads of connected pipeline elements \n");
             return e_FAIL_UNLINK_PADS;
         }
     }
@@ -1168,7 +1168,7 @@ static e_TEE_INSERT_STATE_e  do_pipeline_insert_TEE_splicer(FramesSaver_t * aSav
                                        aSaverPtr->tee_element_ptr,
                                        "sink") )
     {
-        g_warning("Unable to link pads: PRODUCER.OUT --> TEE.SINK \n");       
+        g_warning("Unable to link pads: PRODUCER.OUT --> TEE.SINK \n");
         return e_FAIL_TEE_UP_LINK;
     }
 
@@ -1181,18 +1181,18 @@ static e_TEE_INSERT_STATE_e  do_pipeline_insert_TEE_splicer(FramesSaver_t * aSav
     {
         is_linked_ok = gst_element_link_filtered(aSaverPtr->Q_1_element_ptr,
                                                  splicer_ptr->ptr_into_element,
-                                                 ptr_linker_caps); 
+                                                 ptr_linker_caps);
         if (! is_linked_ok)
         {
-            g_warning("Unable to link elements: T-QUE-1 --> CONSUMER (with producer caps) \n"); 
+            g_warning("Unable to link elements: T-QUE-1 --> CONSUMER (with producer caps) \n");
             return e_FAIL_TEE_Q1_LINK;
-        }    
+        }
     }
     else    // link T-QUE-1 using negotiated caps when producer caps is null
     {
         gst_pad_set_event_function(splicer_ptr->ptr_into_pad, do_callback_for_consumer_INP_pad_events);
 
-        g_warning("linking pads with negotiated CAPS: T-QUE-1.OUT --> CONSUMER.INP \n"); 
+        g_warning("linking pads with negotiated CAPS: T-QUE-1.OUT --> CONSUMER.INP \n");
 
         is_linked_ok = gst_element_link_pads(aSaverPtr->Q_1_element_ptr,
                                              "src",
@@ -1200,7 +1200,7 @@ static e_TEE_INSERT_STATE_e  do_pipeline_insert_TEE_splicer(FramesSaver_t * aSav
                                              splicer_ptr->params.consumer_inp_pad_name);
         if (! is_linked_ok)
         {
-            g_warning("Unable to link pads: T-QUE-1.OUT --> CONSUMER.INP \n"); 
+            g_warning("Unable to link pads: T-QUE-1.OUT --> CONSUMER.INP \n");
             return e_FAIL_TEE_Q1_LINK;
         }
     }
@@ -1214,7 +1214,7 @@ static e_TEE_INSERT_STATE_e  do_pipeline_insert_TEE_splicer(FramesSaver_t * aSav
         ptr_linker_caps = aSaverPtr->sinker_caps_ptr;
     }
 
-    // link elements: T-QUE-2 to SINK2 
+    // link elements: T-QUE-2 to SINK2
     is_linked_ok = gst_element_link_many(aSaverPtr->Q_2_element_ptr,
                                          aSaverPtr->cvt_element_ptr,
                                          NULL);
@@ -1225,7 +1225,7 @@ static e_TEE_INSERT_STATE_e  do_pipeline_insert_TEE_splicer(FramesSaver_t * aSav
 
     if (! is_linked_ok)
     {
-        g_warning("Unable to link elements: T-QUE-2 --> SINK2 \n"); 
+        g_warning("Unable to link elements: T-QUE-2 --> SINK2 \n");
         return e_FAIL_TEE_Q2_LINK;
     }
 
@@ -1410,7 +1410,7 @@ static gboolean do_pipeline_callback_for_timer_tick(gpointer aCtxPtr)
         do_frame_saver_element_cleanup( saver_ptr );
 
         return FALSE;
-    }    
+    }
 
     return TRUE;
 }
@@ -1708,7 +1708,7 @@ int Frame_Saver_Filter_Attach(GstElement * aPluginPtr)
         do_DBG_print("Attach_GST --- KNOWN \n", a_saver_ptr);
         return 0;
     }
-    
+
     if (! The_Mutex_Handle)
     {
         do_DBG_print("Attach_GST --- ERROR ---- The_Mutex_Handle \n", a_saver_ptr);
@@ -1824,8 +1824,8 @@ int Frame_Saver_Filter_Detach(GstElement * aPluginPtr)
 //
 // called at by the actual plugin upon buffer arrival --- returns GST_FLOW_OK
 //=======================================================================================
-int Frame_Saver_Filter_Receive_Buffer(GstElement * aPluginPtr, 
-                                      GstBuffer  * aBufferPtr, 
+int Frame_Saver_Filter_Receive_Buffer(GstElement * aPluginPtr,
+                                      GstBuffer  * aBufferPtr,
                                       const char * aCapsTextPtr)
 {
     int result = (int) GST_FLOW_ERROR;
@@ -1893,8 +1893,8 @@ int Frame_Saver_Filter_Transition(GstElement * aPluginPtr, GstStateChange aTrans
 //
 // called at by the actual plugin to change params --- returns 0 on success, else error
 //=======================================================================================
-int Frame_Saver_Filter_Set_Params(GstElement  * aPluginPtr, 
-                                  const gchar * aNewValuePtr, 
+int Frame_Saver_Filter_Set_Params(GstElement  * aPluginPtr,
+                                  const gchar * aNewValuePtr,
                                   gchar       * aDstValuePtr)
 {
     const char * psz_note = "";
@@ -2077,7 +2077,7 @@ int frame_saver_filter_tester( int argc, char ** argv )
         {
             result =4;
         }
-        
+
         do_frame_saver_element_cleanup( saver_ptr );
     }
 

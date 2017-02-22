@@ -1,10 +1,10 @@
-/* 
+/*
  * ======================================================================================
  * File:        save_frame_as_png.h
  *
  * Purpose:     external interface (API) for code in "save_frame_as_png.c"
- * 
- * History:     1. 2016-11-03   JBendor     Created    
+ *
+ * History:     1. 2016-11-03   JBendor     Created
  *              2. 2016-11-24   JBendor     Updated
  *
  * Copyright (c) 2016 TELMATE INC. All Rights Reserved. Proprietary and confidential.
@@ -23,7 +23,7 @@ extern "C" {
 #endif  // __cplusplus
 
 
-typedef struct  
+typedef struct
 {
     char       fmt[9];      // format name (RGB, YUV, etc.)
     void     * pixels;
@@ -34,7 +34,7 @@ typedef struct
 } PixmapInfo_t;
 
 
-typedef struct 
+typedef struct
 {
     uint8_t red;
     uint8_t green;
@@ -42,7 +42,7 @@ typedef struct
 } RGB24_Pix_t;
 
 
-typedef struct 
+typedef struct
 {
     uint8_t alpha;
     uint8_t red;
@@ -61,11 +61,13 @@ typedef struct
 //
 // returns number of pixels converted from BGRx to RGBx --- returns zero on failure
 //=======================================================================================
-extern int convert_BGR_frame_to_RGB(void  * aPixelsPtr, 
+extern int convert_BGR_frame_to_RGB(void  * aPixelsPtr,
                                     int     aDepth,     // must be 24 or 32
-                                    int     aStride, 
-                                    int     aNumCols, 
-                                    int     aNumRows);
+                                    int     aStride,
+                                    int     aNumCols,
+                                    int     aNumRows,
+                                    int     len
+                                    );
 
 
 //=======================================================================================
@@ -78,7 +80,7 @@ extern int save_frame_as_PNG(const char * aPathPtr,
                              void       * aPixelsPtr,
                              int          aPixmapLng,
                              int          aStrideLng,
-                             int          aFrameCols, 
+                             int          aFrameCols,
                              int          aFrameRows);
 
 

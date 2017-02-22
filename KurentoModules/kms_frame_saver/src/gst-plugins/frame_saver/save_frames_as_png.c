@@ -1,9 +1,9 @@
-/* 
+/*
 * ======================================================================================
 * File:        save_frames_as_png.c
 *
 * Purpose:     saves image frames as PNG files
-* 
+*
 * History:     1. 2016-10-17   JBendor     Created
 *              2. 2016-11-24   JBendor     Updated
 *
@@ -65,26 +65,26 @@ static int do_save_RGB_frame_to_PNG_file (PixmapInfo_t * aPixmapPtr, const char 
     png_uint_32 is_RGBA = (aPixmapPtr->depth == 32);
 
     png_structp png_ptr = png_create_write_struct (PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
-    if (png_ptr == NULL) 
+    if (png_ptr == NULL)
     {
         return -1;
     }
 
     png_infop info_ptr = png_create_info_struct (png_ptr);
-    if (info_ptr == NULL) 
+    if (info_ptr == NULL)
     {
         png_destroy_write_struct (&png_ptr, &info_ptr);
         return -2;
     }
 
-    if (setjmp(png_jmpbuf(png_ptr)) != 0) 
+    if (setjmp(png_jmpbuf(png_ptr)) != 0)
     {
         png_destroy_write_struct (&png_ptr, &info_ptr);
         return -3;
     }
 
     FILE * fp = fopen (file_path, "wb");
-    if (! fp) 
+    if (! fp)
     {
         png_destroy_write_struct (&png_ptr, &info_ptr);
         return -4;
@@ -263,17 +263,17 @@ static int do_save_RGB32_frame(const char * aPathPtr, PixmapInfo_t * aPixmapPtr)
 
 /*
 * =============================================================================
-* YUV encodings have Y,U=Cb,V=Cr samples stored in packed or planar formats. 
+* YUV encodings have Y,U=Cb,V=Cr samples stored in packed or planar formats.
 * YUV values can have the range [0,255] or limited to [16,235] & [16,240].
 * In Packed formats byte-samples are packed into one array of macropixels.
 * In Planar formats Y,U,V are in consecutive arrays (U,V are sub-sampled).
 * More details are provided at "http://www.fourcc.org/yuv.php".
-* 
+*
 * ITUR_Convert_YUV_to_RGB(int Y, int U, int V)
 *      int32_t Cb = U - 128;
 *      int32_t Cr = V - 128;
 *      int32_t R  = Y + (1.4065 * Cb);
-*      int32_t B  = Y + (1.7790 * Cr);  
+*      int32_t B  = Y + (1.7790 * Cr);
 *      int32_t G  = Y - (0.3455 * Cb) - (0.7169 * Cr);
 *      if (R < 0) R=0; else if (R > 255) R = 255;
 *      if (B < 0) B=0; else if (B > 255) B = 255;
@@ -289,11 +289,11 @@ static char sz_YUV_decoder_error[299] = { '!', 0 };
 //
 // Writes bitmap to a PNG file specified by path; returns 0 if OK, else error
 //=======================================================================================
-static int32_t do_decode_YUV420_frame(void    *output_RGB_ptr, 
-                                      uint8_t *YUV_source_ptr, 
-                                      int32_t  numFrameCols, 
+static int32_t do_decode_YUV420_frame(void    *output_RGB_ptr,
+                                      uint8_t *YUV_source_ptr,
+                                      int32_t  numFrameCols,
                                       int32_t  numFrameRows,
-                                      int32_t  srcFrameType) 
+                                      int32_t  srcFrameType)
 {
 #define _VERIFY_I420_ARGS___________________NO
 #define _STRICT_I420_TYPE_
@@ -319,7 +319,7 @@ static int32_t do_decode_YUV420_frame(void    *output_RGB_ptr,
 
     int32_t     num_frame_cols = numFrameCols;
     int32_t     num_frame_rows = numFrameRows;
-    
+
     int32_t       Y_row_stride = num_frame_cols;                        // intensity rows stride
     int32_t       Y_frame_size = (Y_row_stride * num_frame_rows);       // intensity frame length
 
@@ -328,17 +328,17 @@ static int32_t do_decode_YUV420_frame(void    *output_RGB_ptr,
 
     uint8_t    *ptr_Y_encoding = YUV_source_ptr - 1;
     uint8_t    *end_Y_encoding = ptr_Y_encoding + Y_frame_size;
-    uint8_t    *ptr_U_encoding = NULL;    
+    uint8_t    *ptr_U_encoding = NULL;
     uint8_t    *ptr_V_encoding = NULL;
 
-    *sz_YUV_decoder_error = 0;    
+    *sz_YUV_decoder_error = 0;
 
 #ifdef _VERIFY_I420_ARGS_
     if ( (num_frame_cols < 0) || (num_frame_cols & 1) || (srcFrameType < 1) ||
          (num_frame_rows < 0) || (num_frame_rows & 1) || (srcFrameType > 4) )
-    {        
+    {
         sprintf (sz_YUV_decoder_error, "invalid arguments");
-        return -1;        
+        return -1;
     }
 #endif
 
@@ -346,7 +346,7 @@ static int32_t do_decode_YUV420_frame(void    *output_RGB_ptr,
     if (srcFrameType != 1)
     {
         sprintf (sz_YUV_decoder_error, "expecting I420_IYUV as Frame Type");
-        return -2;        
+        return -2;
     }
 #endif
 
@@ -373,7 +373,7 @@ static int32_t do_decode_YUV420_frame(void    *output_RGB_ptr,
         else if (srcFrameType != 1) // "I420_IYUV"
         {
             sprintf (sz_YUV_decoder_error, "invalid Frame Type");
-            return -3;        
+            return -3;
         }
 #endif
 
@@ -412,8 +412,10 @@ static int32_t do_decode_YUV420_frame(void    *output_RGB_ptr,
 //
 // returns number of pixels converted from BGRx to RGBx --- returns zero on failure
 //=======================================================================================
-int convert_BGR_frame_to_RGB(void * aPixelsPtr, int aDepth, int aStride, int aCols, int aRows)
+int convert_BGR_frame_to_RGB(void * aPixelsPtr, int aDepth, int aStride, int aCols, int aRows, int len)
 {
+    unsigned char *aPixelsPtrCopy = malloc(len);
+    memcpy(aPixelsPtrCopy, aPixelsPtr, len);
     int num_pixels = aCols * aRows;
 
     // verify valid conditions
@@ -421,7 +423,7 @@ int convert_BGR_frame_to_RGB(void * aPixelsPtr, int aDepth, int aStride, int aCo
     {
         return 0;
     }
-    
+
     uint8_t * next_row_ptr = ((uint8_t *)aPixelsPtr) + aStride;
 
     // possibly --- convert 32-bit pixels
@@ -430,21 +432,21 @@ int convert_BGR_frame_to_RGB(void * aPixelsPtr, int aDepth, int aStride, int aCo
         while (--aRows >= 0)
         {
             RGB32_Pix_t * pix_ptr = (RGB32_Pix_t *) (next_row_ptr - aStride);
-            
+
             while (next_row_ptr != (uint8_t *) pix_ptr)
             {
                 uint8_t other = pix_ptr->blue;
-                
+
                 pix_ptr->blue = pix_ptr->red;
-                
-                pix_ptr->red  = other;                
-                
+
+                pix_ptr->red  = other;
+
                 ++pix_ptr;
             }
-            
+
             next_row_ptr += aStride;
-        }        
-    
+        }
+
         return num_pixels;
     }
 
@@ -454,26 +456,26 @@ int convert_BGR_frame_to_RGB(void * aPixelsPtr, int aDepth, int aStride, int aCo
         while (--aRows >= 0)
         {
             RGB24_Pix_t * pix_ptr = (RGB24_Pix_t *) (((uint8_t *)next_row_ptr) - aStride);
-            
+
             while (next_row_ptr != (uint8_t *) pix_ptr)
             {
                 uint8_t other = pix_ptr->blue;
-                
+
                 pix_ptr->blue = pix_ptr->red;
-                
-                pix_ptr->red  = other;                
-                
+
+                pix_ptr->red  = other;
+
                 ++pix_ptr;
             }
-            
+
             next_row_ptr += aStride;
-        }        
-    
+        }
+
         return num_pixels;
     }
 
-    // error --- invalid stride or invalid depth    
-    return 0;   
+    // error --- invalid stride or invalid depth
+    return 0;
 }
 
 
@@ -496,9 +498,9 @@ int save_frame_as_PNG(const char * aPathPtr,
 
     int  num_pixel_bytes = (aFrameCols < 1) ? 0 : (aStrideLng / aFrameCols);
 
-    if ( (aPathPtr == NULL)     || 
-         (aFormatPtr == NULL)   || 
-         (num_pixel_bytes < 1)  || 
+    if ( (aPathPtr == NULL)     ||
+         (aFormatPtr == NULL)   ||
+         (num_pixel_bytes < 1)  ||
          (num_pixel_bytes > 4)  ||
          (num_frame_pixels < 0) )
     {
@@ -517,7 +519,7 @@ int save_frame_as_PNG(const char * aPathPtr,
     {
         FILE * fp = (aPixelsPtr == NULL) ? NULL : fopen (aPathPtr, "wb");
 
-        if (fp != NULL) 
+        if (fp != NULL)
         {
             fwrite(aPixelsPtr, aPixmapLng, 1, fp);
             fclose(fp);
@@ -526,7 +528,7 @@ int save_frame_as_PNG(const char * aPathPtr,
         return (fp ? 0 : -20);
     }
 
-    if (strstr(aFormatPtr, "RGB") != NULL)   // RGB 
+    if (strstr(aFormatPtr, "RGB") != NULL)   // RGB
     {
         int result = -1;
 
@@ -546,7 +548,7 @@ int save_frame_as_PNG(const char * aPathPtr,
         return (result ? -30 : 0);
     }
 
-    if (strstr(aFormatPtr, "I420") != NULL)   // YUV 
+    if (strstr(aFormatPtr, "I420") != NULL)   // YUV
     {
         RGB24_Pix_t * ptr_RGB24_pixels = malloc(sizeof(RGB24_Pix_t) * num_frame_pixels);
 
