@@ -322,7 +322,7 @@ static gint do_save_frame_buffer(GstBuffer     * aBufferPtr,
     memcpy(dataCopy, map.data, data_lng);
     if ( strncmp(sz_image_format, "BGR", 3) == 0 )
     {
-        convert_BGR_frame_to_RGB(dataCopy, pix_size * 8, stride, cols, rows, data_lng);
+        convert_BGR_frame_to_RGB(dataCopy, pix_size * 8, stride, cols, rows);
         sz_image_format[0] = 'R';
         sz_image_format[2] = 'B';
     }
