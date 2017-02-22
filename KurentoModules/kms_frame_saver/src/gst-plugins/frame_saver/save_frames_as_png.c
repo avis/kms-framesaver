@@ -412,10 +412,8 @@ static int32_t do_decode_YUV420_frame(void    *output_RGB_ptr,
 //
 // returns number of pixels converted from BGRx to RGBx --- returns zero on failure
 //=======================================================================================
-int convert_BGR_frame_to_RGB(void * aPixelsPtr, int aDepth, int aStride, int aCols, int aRows, int len)
+int convert_BGR_frame_to_RGB(void * aPixelsPtr, int aDepth, int aStride, int aCols, int aRows)
 {
-    unsigned char *aPixelsPtrCopy = malloc(len);
-    memcpy(aPixelsPtrCopy, aPixelsPtr, len);
     int num_pixels = aCols * aRows;
 
     // verify valid conditions

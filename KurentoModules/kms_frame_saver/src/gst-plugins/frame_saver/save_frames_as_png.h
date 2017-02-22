@@ -65,9 +65,7 @@ extern int convert_BGR_frame_to_RGB(void  * aPixelsPtr,
                                     int     aDepth,     // must be 24 or 32
                                     int     aStride,
                                     int     aNumCols,
-                                    int     aNumRows,
-                                    int     len
-                                    );
+                                    int     aNumRows);
 
 
 //=======================================================================================

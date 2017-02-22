@@ -318,9 +318,11 @@ static gint do_save_frame_buffer(GstBuffer     * aBufferPtr,
 
     aSaverPtr->num_saved_frames += 1;
 
+    unsigned char *dataCopy = malloc(data_lng);
+    memcpy(dataCopy, map.data, data_lng);
     if ( strncmp(sz_image_format, "BGR", 3) == 0 )
     {
-        convert_BGR_frame_to_RGB(map.data, pix_size * 8, stride, cols, rows, data_lng);
+        convert_BGR_frame_to_RGB(dataCopy, pix_size * 8, stride, cols, rows, data_lng);
         sz_image_format[0] = 'R';
         sz_image_format[2] = 'B';
     }
@@ -336,8 +338,8 @@ static gint do_save_frame_buffer(GstBuffer     * aBufferPtr,
             elapsed_ms % 1000,
             aSaverPtr->num_saved_frames);
 
-    errs = save_frame_as_PNG(sz_image_path, sz_image_format, map.data, data_lng, stride, cols, rows);
-
+    errs = save_frame_as_PNG(sz_image_path, sz_image_format, dataCopy, data_lng, stride, cols, rows);
+    free(dataCopy);
     #ifndef _NO_DBG_TRACE
     	g_print(PREFIX_FORMAT "playtime=%u ... Saved=(%s), Error=(%d) \n", aSaverPtr->instance_ID,
     			elapsed_ms,
