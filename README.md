@@ -26,13 +26,24 @@
 + 
 + =======================================| 
 + 
++ Parameters Used To Configure Kurento's Frame-Saver-Module --- Note: the word "auto" can be used to indciate a default value.
++ 
++   C1: Parameter "wait=T" starts an idle-wait period of T millis before resuming saving frames --- unlimited wait when T is 0.
++   C2: Parameter "snap=T,N,E" sets frame-saving interval to T millis, maximum saved frames count to N, maximum error count to E.
++   C3: Parameter "path=FOLDER" sets the path of the working folder where a sub-folder is created whenever an idle-wait period ends.
++   C4: Parameter "link=ELEM1,ELEM2,PIPE" means splicing the Gstreamer's pipeline named PIPE between elements named ELEM1 and ELEM2.
++   C5: Parameter "pads=FROM,INTO,NEXT" defines the names of the Gstreamer-Element-Pads for the placment of a Tee Splicing element.
++   C6: Note: Java apps use "link=auto,auto,auto" and "pads=auto,auto,auto" because KMS prevents splicing the Gstreamer's pipeline.
++ 
++ =======================================| 
++ 
 + About The Saved Image Files:
 + 
-+   C1: The "FrameSaver" creates a new sub-folder whenever it is ready to save the first frame after a "idle-standby/idle-waiting" period.
-+   C2: The name of a sub-folder has the format "IMAGES_YYYYMMDD_HHmmss" --- The paremeter "path=" defines the parent folder (deafult=CWD).
-+   C3: The name of a saved image file has the format "FMT_WDTxHGTxPIX.@SSSS_MMM.#INDEX.png" --- example: "RGB_640x480x8.@0006_041.#4.png".
-+   C4: The meaning of C3: Format=RGB(8,8,8), 640 pixels width, 480 pixel height, 8 bits per color, image #4, 6.041 seconds after idle end.
-+   C5: One saved image file holds a PNG structure for exactly one captured video frame.
++   D1: The "FrameSaver" creates a new sub-folder whenever it is ready to save the first frame after a "idle-standby/idle-waiting" period.
++   D2: The name of a sub-folder has the format "IMAGES_YYYYMMDD_HHmmss" --- The paremeter "path=" defines the parent folder (deafult=CWD).
++   D3: The name of a saved image file has the format "FMT_WDTxHGTxPIX.@SSSS_MMM.#INDEX.png" --- example: "RGB_640x480x8.@0006_041.#4.png".
++   D4: The meaning of C3: Format=RGB(8,8,8), 640 pixels width, 480 pixel height, 8 bits per color, image #4, 6.041 seconds after idle end.
++   D5: One saved image file holds a PNG structure for exactly one captured video frame.
 + 
 + =======================================| 
 + 

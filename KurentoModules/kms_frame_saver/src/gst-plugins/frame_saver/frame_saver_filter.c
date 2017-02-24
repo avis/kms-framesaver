@@ -8,6 +8,7 @@
  *              4. 2016-11-04   JBendor     Support for making custom pipelines
  *              5. 2016-12-08   JBendor     Support Gstreamer Plugins
  *              6. 2016-12-22   JBendor     Updated
+ *              7. 2017-02-23   JBendor     Prevent BGR-to-RGB from modifing image frame
  *
  * Description: Uses the Gstreamer TEE to splice one video source into two sinks.
  *
@@ -307,10 +308,11 @@ static gint do_save_frame_buffer(GstBuffer     * aBufferPtr,
         return GST_FLOW_ERROR;
     }
 
-    int data_lng = (int) map.size;          // total number of frame's bytes
-    int num_pixs = rows * cols;
-    int pix_size = data_lng / num_pixs;
-    int   stride = GST_ROUND_UP_4(cols * pix_size);         // bytes per row
+    void  * data_ptr = (void*) map.data;        // pointer to frame's data bytes
+    int     data_lng = (int) map.size;          // total number of frame's bytes
+    int     num_pixs = rows * cols;
+    int     pix_size = data_lng / num_pixs;
+    int       stride = GST_ROUND_UP_4(cols * pix_size);         // bytes per row
 
     GstClockTime now = gst_clock_get_time (The_SysClock_Ptr);
 
@@ -318,17 +320,17 @@ static gint do_save_frame_buffer(GstBuffer     * aBufferPtr,
 
     aSaverPtr->num_saved_frames += 1;
 
-    unsigned char *dataCopy = malloc(data_lng);
-    memcpy(dataCopy, map.data, data_lng);
     if ( strncmp(sz_image_format, "BGR", 3) == 0 )
     {
-        convert_BGR_frame_to_RGB(dataCopy, pix_size * 8, stride, cols, rows);
+        data_ptr = malloc(data_lng);
+        memcpy(data_ptr, map.data, data_lng);
+        convert_BGR_frame_to_RGB(data_ptr, pix_size * 8, stride, cols, rows);
         sz_image_format[0] = 'R';
         sz_image_format[2] = 'B';
     }
 
     sprintf(sz_image_path,
-            "%s%c%s_%dx%dx%d.@%04u_%03u.#%u.png",             // "f:/telmate/junk/"
+            "%s%c%s_%dx%dx%d.@%04u_%03u.#%u.png",
             aSaverPtr->work_folder_path, PATH_DELIMITER,
             (format_is_I420 ? "I420_RGB" : sz_image_format),
             cols,
@@ -338,8 +340,13 @@ static gint do_save_frame_buffer(GstBuffer     * aBufferPtr,
             elapsed_ms % 1000,
             aSaverPtr->num_saved_frames);
 
-    errs = save_frame_as_PNG(sz_image_path, sz_image_format, dataCopy, data_lng, stride, cols, rows);
-    free(dataCopy);
+    errs = save_frame_as_PNG(sz_image_path, sz_image_format, data_ptr, data_lng, stride, cols, rows);
+    
+    if (data_ptr != map.data)
+    {
+        free(data_ptr);     // discard the copied image data 
+    }
+    
     #ifndef _NO_DBG_TRACE
     	g_print(PREFIX_FORMAT "playtime=%u ... Saved=(%s), Error=(%d) \n", aSaverPtr->instance_ID,
     			elapsed_ms,
