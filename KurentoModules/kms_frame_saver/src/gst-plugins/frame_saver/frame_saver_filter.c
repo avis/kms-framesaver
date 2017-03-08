@@ -328,15 +328,11 @@ static gint do_save_frame_buffer(GstBuffer     * aBufferPtr,
     }
 
     sprintf(sz_image_path,
-            "%s%c%s_%dx%dx%d.@%04u_%03u.#%u.png",             // "f:/telmate/junk/"
+            "%s%c%u_%lu.png",
             aSaverPtr->work_folder_path, PATH_DELIMITER,
-            (format_is_I420 ? "I420_RGB" : sz_image_format),
-            cols,
-            rows,
-            (format_is_I420 ? 24 : bits),
-            elapsed_ms / 1000,
-            elapsed_ms % 1000,
-            aSaverPtr->num_saved_frames);
+            aSaverPtr->num_saved_frames,
+            (unsigned long)time(NULL)
+            );
 
     errs = save_frame_as_PNG(sz_image_path, sz_image_format, dataCopy, data_lng, stride, cols, rows);
     free(dataCopy);
@@ -515,15 +511,11 @@ static gboolean do_appsink_trigger_next_frame_snap(FramesSaver_t * aSaverPtr, ui
         int length = (int) strlen(aSaverPtr->work_folder_path);
 
         sprintf( &aSaverPtr->work_folder_path[length],
-                 "%cIMAGES_%04d%02d%02d_%02d%02d%02d_%d",
+                 "%csnapshots_%d_%ul",
                  PATH_DELIMITER,
-                 tm_ptr->tm_year + 1900,
-                 tm_ptr->tm_mon + 1,
-                 tm_ptr->tm_mday,
-                 tm_ptr->tm_hour,
-                 tm_ptr->tm_min,
-                 tm_ptr->tm_sec,
-                 ++The_Folders_Count );
+                 ++The_Folders_Count,
+                 (unsigned long)time(NULL)
+                );
 
         int error = MK_RWX_DIR(aSaverPtr->work_folder_path);
 
