@@ -502,7 +502,7 @@ static gboolean do_appsink_trigger_next_frame_snap(FramesSaver_t * aSaverPtr, ui
     // increment the number of snap-signals --- create new folder on first snap
     if (++aSaverPtr->num_snap_signals == 1)
     {
-        time_t now = time(NULL);
+        time_t now = (unsigned long)time(NULL);
 
         int length = (int) strlen(aSaverPtr->work_folder_path);
 
@@ -510,7 +510,7 @@ static gboolean do_appsink_trigger_next_frame_snap(FramesSaver_t * aSaverPtr, ui
                  "%csnapshots_%d_%lu",
                  PATH_DELIMITER,
                  ++The_Folders_Count,
-                 (unsigned long)time(NULL)
+                 now
                 );
 
         int error = MK_RWX_DIR(aSaverPtr->work_folder_path);
