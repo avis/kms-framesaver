@@ -323,7 +323,7 @@ static gint do_save_frame_buffer(GstBuffer     * aBufferPtr,
     }
 
     sprintf(sz_image_path,
-            "%s%c%u_%lu.png",
+            "%s%c%05u_%lu.png",
             aSaverPtr->work_folder_path, PATH_DELIMITER,
             aSaverPtr->num_saved_frames,
             (unsigned long)time(NULL)
@@ -504,7 +504,7 @@ static gboolean do_appsink_trigger_next_frame_snap(FramesSaver_t * aSaverPtr, ui
         int length = (int) strlen(aSaverPtr->work_folder_path);
 
         sprintf( &aSaverPtr->work_folder_path[length],
-                 "%csnapshots_%lu",
+                 "%cframes_%lu",
                  PATH_DELIMITER,
                  now
                 );
