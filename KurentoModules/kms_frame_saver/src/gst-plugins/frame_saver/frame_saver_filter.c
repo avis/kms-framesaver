@@ -278,8 +278,6 @@ static gint do_save_frame_buffer(GstBuffer     * aBufferPtr,
 
     const char * interlace = aCapsPtr ? strstr(aCapsPtr, "interlace-mode=") : (aCapsPtr = "?");
 
-    int     format_is_I420 = (strstr(aCapsPtr, "I420") != NULL);
-
     int  cols = 0,
          rows = 0,
          bits = 8,
@@ -506,12 +504,10 @@ static gboolean do_appsink_trigger_next_frame_snap(FramesSaver_t * aSaverPtr, ui
     {
         time_t now = time(NULL);
 
-        struct tm * tm_ptr = localtime(&now);
-
         int length = (int) strlen(aSaverPtr->work_folder_path);
 
         sprintf( &aSaverPtr->work_folder_path[length],
-                 "%csnapshots_%d_%ul",
+                 "%csnapshots_%d_%lu",
                  PATH_DELIMITER,
                  ++The_Folders_Count,
                  (unsigned long)time(NULL)
