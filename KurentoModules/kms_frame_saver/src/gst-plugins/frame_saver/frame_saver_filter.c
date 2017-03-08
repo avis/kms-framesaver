@@ -172,8 +172,6 @@ static GstClock      *  The_SysClock_Ptr = NULL;
 
 static GstClockTime    The_LaunchTime_ns = 0;
 
-static gint            The_Folders_Count = 0;
-
 static gint            The_Plugins_Count = -1;
 
 
@@ -219,7 +217,6 @@ static int do_initialize_static_resources()
     memset( The_FramesSavers_Array, 0, sizeof(The_FramesSavers_Array) );
 
     The_Plugins_Count = 0;
-    The_Folders_Count = 0;
 
     if (nativeCreateMutex(&The_Mutex_Handle) != 0)
     {
@@ -507,9 +504,8 @@ static gboolean do_appsink_trigger_next_frame_snap(FramesSaver_t * aSaverPtr, ui
         int length = (int) strlen(aSaverPtr->work_folder_path);
 
         sprintf( &aSaverPtr->work_folder_path[length],
-                 "%csnapshots_%d_%lu",
+                 "%csnapshots_%lu",
                  PATH_DELIMITER,
-                 ++The_Folders_Count,
                  now
                 );
 
