@@ -159,7 +159,7 @@ typedef struct _FramesSaver_t
 } FramesSaver_t;
 
 
-#define MAX_NUM_PLUGINS (4)
+#define MAX_NUM_PLUGINS (4000)
 
 static FramesSaver_t    The_FramesSavers_Array[ MAX_NUM_PLUGINS ] = { { 0, NULL, NULL } };
 
