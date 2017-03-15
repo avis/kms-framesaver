@@ -173,8 +173,6 @@ static GstClock      *  The_SysClock_Ptr = NULL;
 
 static GstClockTime    The_LaunchTime_ns = 0;
 
-static gint            The_Folders_Count = 0;
-
 static gint            The_Plugins_Count = -1;
 
 
@@ -220,7 +218,6 @@ static int do_initialize_static_resources()
     memset( The_FramesSavers_Array, 0, sizeof(The_FramesSavers_Array) );
 
     The_Plugins_Count = 0;
-    The_Folders_Count = 0;
 
     if (nativeCreateMutex(&The_Mutex_Handle) != 0)
     {
@@ -279,8 +276,6 @@ static gint do_save_frame_buffer(GstBuffer     * aBufferPtr,
 
     const char * interlace = aCapsPtr ? strstr(aCapsPtr, "interlace-mode=") : (aCapsPtr = "?");
 
-    int     format_is_I420 = (strstr(aCapsPtr, "I420") != NULL);
-
     int  cols = 0,
          rows = 0,
          bits = 8,
@@ -330,15 +325,11 @@ static gint do_save_frame_buffer(GstBuffer     * aBufferPtr,
     }
 
     sprintf(sz_image_path,
-            "%s%c%s_%dx%dx%d.@%04u_%03u.#%u.png",
+            "%s%c%05u_%lu.png",
             aSaverPtr->work_folder_path, PATH_DELIMITER,
-            (format_is_I420 ? "I420_RGB" : sz_image_format),
-            cols,
-            rows,
-            (format_is_I420 ? 24 : bits),
-            elapsed_ms / 1000,
-            elapsed_ms % 1000,
-            aSaverPtr->num_saved_frames);
+            aSaverPtr->num_saved_frames,
+            (unsigned long)time(NULL)
+            );
 
     errs = save_frame_as_PNG(sz_image_path, sz_image_format, data_ptr, data_lng, stride, cols, rows);
     
@@ -515,22 +506,15 @@ static gboolean do_appsink_trigger_next_frame_snap(FramesSaver_t * aSaverPtr, ui
     // increment the number of snap-signals --- create new folder on first snap
     if (++aSaverPtr->num_snap_signals == 1)
     {
-        time_t now = time(NULL);
-
-        struct tm * tm_ptr = localtime(&now);
+        time_t now = (unsigned long)time(NULL);
 
         int length = (int) strlen(aSaverPtr->work_folder_path);
 
         sprintf( &aSaverPtr->work_folder_path[length],
-                 "%cIMAGES_%04d%02d%02d_%02d%02d%02d_%d",
+                 "%cframes_%lu",
                  PATH_DELIMITER,
-                 tm_ptr->tm_year + 1900,
-                 tm_ptr->tm_mon + 1,
-                 tm_ptr->tm_mday,
-                 tm_ptr->tm_hour,
-                 tm_ptr->tm_min,
-                 tm_ptr->tm_sec,
-                 ++The_Folders_Count );
+                 now
+                );
 
         int error = MK_RWX_DIR(aSaverPtr->work_folder_path);
 
