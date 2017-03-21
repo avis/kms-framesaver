@@ -184,7 +184,7 @@ static gint            The_Plugins_Count = -1;
 static void do_DBG_print(const gchar * aNoticePtr, FramesSaver_t * aSaverPtr)
 {
 	#ifndef _NO_DBG_TRACE
-		g_print(PREFIX_FORMAT "%s", (aSaverPtr ? aSaverPtr->instance_ID : 0), aNoticePtr);
+		GST_DEBUG(PREFIX_FORMAT "%s", (aSaverPtr ? aSaverPtr->instance_ID : 0), aNoticePtr);
 	#endif
 
 	return;
@@ -332,14 +332,14 @@ static gint do_save_frame_buffer(GstBuffer     * aBufferPtr,
             );
 
     errs = save_frame_as_PNG(sz_image_path, sz_image_format, data_ptr, data_lng, stride, cols, rows);
-    
+
     if (data_ptr != map.data)
     {
-        free(data_ptr);     // discard the copied image data 
+        free(data_ptr);     // discard the copied image data
     }
-    
+
     #ifndef _NO_DBG_TRACE
-    	g_print(PREFIX_FORMAT "playtime=%u ... Saved=(%s), Error=(%d) \n", aSaverPtr->instance_ID,
+    	GST_DEBUG(PREFIX_FORMAT "playtime=%u ... Saved=(%s), Error=(%d) \n", aSaverPtr->instance_ID,
     			elapsed_ms,
 				strrchr(sz_image_path, PATH_DELIMITER) + 1,
 				errs);
@@ -520,14 +520,14 @@ static gboolean do_appsink_trigger_next_frame_snap(FramesSaver_t * aSaverPtr, ui
 
         if (error == 0)
         {
-            g_print(PREFIX_FORMAT "playtime=%u %s (%s) \n", aSaverPtr->instance_ID,
+            GST_LOG(PREFIX_FORMAT "playtime=%u %s (%s) \n", aSaverPtr->instance_ID,
                     elapsedPlaytimeMillis,
                     "... New Folder",
                     &aSaverPtr->work_folder_path[0]);
         }
         else
         {
-            g_print(PREFIX_FORMAT "playtime=%u %s (%s) NOT created --- error=(%d) \n", aSaverPtr->instance_ID,
+            GST_LOG(PREFIX_FORMAT "playtime=%u %s (%s) NOT created --- error=(%d) \n", aSaverPtr->instance_ID,
                     elapsedPlaytimeMillis,
                     "... New Folder",
                     &aSaverPtr->work_folder_path[0], error);
@@ -547,7 +547,7 @@ static gboolean do_appsink_trigger_next_frame_snap(FramesSaver_t * aSaverPtr, ui
     if ((splicer_ptr->params.max_num_snaps_saved > 0) &&
         (splicer_ptr->params.max_num_snaps_saved <= aSaverPtr->num_saved_frames))
     {
-        g_print(PREFIX_FORMAT "playtime=%u ... #SAVED=%u ... Reached-Limit \n", aSaverPtr->instance_ID,
+        GST_DEBUG(PREFIX_FORMAT "playtime=%u ... #SAVED=%u ... Reached-Limit \n", aSaverPtr->instance_ID,
                 elapsedPlaytimeMillis,
                 splicer_ptr->params.max_num_snaps_saved);
 
@@ -556,7 +556,7 @@ static gboolean do_appsink_trigger_next_frame_snap(FramesSaver_t * aSaverPtr, ui
     else if ((splicer_ptr->params.max_num_failed_snap > 0) &&
              (splicer_ptr->params.max_num_failed_snap <= aSaverPtr->num_saver_errors))
     {
-        g_print(PREFIX_FORMAT "playtime=%u ... #FAILS=%u ... Reached-Limit \n", aSaverPtr->instance_ID,
+        GST_DEBUG(PREFIX_FORMAT "playtime=%u ... #FAILS=%u ... Reached-Limit \n", aSaverPtr->instance_ID,
                 elapsedPlaytimeMillis,
                 splicer_ptr->params.max_num_failed_snap);
 
@@ -564,7 +564,7 @@ static gboolean do_appsink_trigger_next_frame_snap(FramesSaver_t * aSaverPtr, ui
     }
     else if ((aSaverPtr->attached_plugin_ptr != NULL) && (splicer_ptr->params.max_wait_ms > 0))
     {
-        g_print(PREFIX_FORMAT "playtime=%u ... #snaps=%u ... #saved=%u ... errors=%u,%u ... frames=%u\n", aSaverPtr->instance_ID,
+        GST_DEBUG(PREFIX_FORMAT "playtime=%u ... #snaps=%u ... #saved=%u ... errors=%u,%u ... frames=%u\n", aSaverPtr->instance_ID,
                 elapsedPlaytimeMillis,
                 aSaverPtr->num_snap_signals,
                 aSaverPtr->num_saved_frames,
@@ -877,11 +877,11 @@ static gboolean do_splicer_unlink_two_elements(FramesSaver_t * aSaverPtr)
             {
                 g_queue_push_tail( &splicer_ptr->effects_queue, ptr_new_effect );
 
-                g_print("Added (%s) to Unlinker-Effects-Queue \n", psz_effect_name);
+                GST_LOG("Added (%s) to Unlinker-Effects-Queue \n", psz_effect_name);
             }
             else
             {
-                g_print("Failed to make Unlinker-Effect (%s) \n", psz_effect_name);
+                GST_LOG("Failed to make Unlinker-Effect (%s) \n", psz_effect_name);
             }
         }
     }
@@ -922,7 +922,7 @@ static gint do_splicer_configure_TEE_pads(FramesSaver_t * aSaverPtr)
 
     if (! pad_template_ptr)
     {
-        g_warning("Unable to get pad template");
+        GST_WARNING("Unable to get pad template");
         return 0;
     }
 
@@ -931,8 +931,6 @@ static gint do_splicer_configure_TEE_pads(FramesSaver_t * aSaverPtr)
                                              NULL,
                                              NULL);
 
-    // g_print("Got request pad (%s) for tee-branch-Q1 \n", gst_pad_get_name(tee_Q1_pad_ptr));
-
     queue1_pad_ptr = gst_element_get_static_pad(aSaverPtr->Q_1_element_ptr, "sink");
 
     tee_Q2_pad_ptr = gst_element_request_pad(aSaverPtr->tee_element_ptr,
@@ -940,19 +938,17 @@ static gint do_splicer_configure_TEE_pads(FramesSaver_t * aSaverPtr)
                                              NULL,
                                              NULL);
 
-    // g_print("Got request pad (%s) for tee-branch-Q2 \n", gst_pad_get_name(tee_Q2_pad_ptr));
-
     queue2_pad_ptr = gst_element_get_static_pad(aSaverPtr->Q_2_element_ptr, "sink");
 
     if (gst_pad_link(tee_Q1_pad_ptr, queue1_pad_ptr) != GST_PAD_LINK_OK)
     {
-        g_warning("Tee for q1 could not be linked.\n");
+        GST_WARNING("Tee for q1 could not be linked.\n");
         return 0;
     }
 
     if (gst_pad_link(tee_Q2_pad_ptr, queue2_pad_ptr) != GST_PAD_LINK_OK)
     {
-        g_warning("Tee for q2 could not be linked.\n");
+        GST_WARNING("Tee for q2 could not be linked.\n");
         return 0;
     }
 
@@ -1025,7 +1021,7 @@ static gboolean do_pipeline_callback_for_bus_messages(GstBus     * aBusPtr,
     {
     case GST_MESSAGE_ERROR:
         gst_message_parse_error(aMsgPtr, &ptr_err, &ptr_dbg);
-        g_print(PREFIX_FORMAT "bus_msg=ERROR --- %s", saver_ID, ptr_err->message);
+        GST_ERROR(PREFIX_FORMAT "bus_msg=ERROR --- %s", saver_ID, ptr_err->message);
         gst_object_default_error(aMsgPtr->src, ptr_err, ptr_dbg);
         g_clear_error(&ptr_err);
         g_error_free(ptr_err);
@@ -1037,13 +1033,13 @@ static gboolean do_pipeline_callback_for_bus_messages(GstBus     * aBusPtr,
         gst_struct_ptr = gst_message_get_structure(aMsgPtr);
         if (gst_structure_has_name(gst_struct_ptr, "turn_off"))
         {
-        	g_print(PREFIX_FORMAT "bus_msg=OFF \n", saver_ID);
+        	GST_ERROR(PREFIX_FORMAT "bus_msg=OFF \n", saver_ID);
             g_main_loop_quit(The_MainLoop_Ptr);
         }
         break;
 
     case GST_MESSAGE_EOS:
-    	g_print(PREFIX_FORMAT "bus_msg=EOS \n", saver_ID);
+    	GST_ERROR(PREFIX_FORMAT "bus_msg=EOS \n", saver_ID);
         g_main_loop_quit(The_MainLoop_Ptr);
         break;
 
@@ -1057,7 +1053,7 @@ static gboolean do_pipeline_callback_for_bus_messages(GstBus     * aBusPtr,
 
         gst_message_parse_state_changed(aMsgPtr, &old_state, &new_state, &pending_state);
 
-        g_print(PREFIX_FORMAT "bus_msg=STATE --- old=%i  new=%i  pending=%i. \n", saver_ID, old_state, new_state, pending_state);
+        GST_LOG(PREFIX_FORMAT "bus_msg=STATE --- old=%i  new=%i  pending=%i. \n", saver_ID, old_state, new_state, pending_state);
     }
     else
     {
@@ -1065,7 +1061,7 @@ static gboolean do_pipeline_callback_for_bus_messages(GstBus     * aBusPtr,
 
         int msg_time = (int) aMsgPtr->timestamp;
 
-        g_print(PREFIX_FORMAT "bus_msg=OTHER --- name=(%s) time=%i  type=%i  \n", saver_ID, psz_msg_type_name, msg_time, msg_type);
+        GST_LOG(PREFIX_FORMAT "bus_msg=OTHER --- name=(%s) time=%i  type=%i  \n", saver_ID, psz_msg_type_name, msg_time, msg_type);
     }
 
     return TRUE;
@@ -1323,7 +1319,7 @@ static gboolean do_pipeline_callback_for_idle_time(gpointer aCtxPtr)
     {
         if ((splicer_ptr->status == e_SPLICER_STATE_NONE) || (splicer_ptr->status == e_SPLICER_STATE_USED) )
         {
-            g_print(PREFIX_FORMAT "playtime=%u %s", saver_ptr->instance_ID, playtime_ms, "... Starting TEE insertion \n");
+            GST_LOG(PREFIX_FORMAT "playtime=%u %s", saver_ptr->instance_ID, playtime_ms, "... Starting TEE insertion \n");
         }
 
         e_TEE_INSERT_STATE_e  status = do_pipeline_insert_TEE_splicer( saver_ptr );
@@ -1337,19 +1333,19 @@ static gboolean do_pipeline_callback_for_idle_time(gpointer aCtxPtr)
             gst_element_set_state( splicer_ptr->ptr_from_element,  GST_STATE_PLAYING );
             gst_element_set_state( splicer_ptr->ptr_into_element,  GST_STATE_PLAYING );
 
-            g_print(PREFIX_FORMAT "playtime=%u %s", saver_ptr->instance_ID, playtime_ms, "... Finished TEE insertion\n");
+            GST_LOG(PREFIX_FORMAT "playtime=%u %s", saver_ptr->instance_ID, playtime_ms, "... Finished TEE insertion\n");
         }
         else if (status != e_TEE_INSERT_WAITS)    // failed --- Retry later
         {
             saver_ptr->wait_state_ends_ns = now_nanos + (NANOS_PER_MILLISEC * splicer_ptr->params.one_tick_ms * 10);
 
-            g_print(PREFIX_FORMAT "playtime=%u %s", saver_ptr->instance_ID, playtime_ms, "... Failed TEE insertion\n");
+            GST_LOG(PREFIX_FORMAT "playtime=%u %s", saver_ptr->instance_ID, playtime_ms, "... Failed TEE insertion\n");
 
             gst_element_set_state( saver_ptr->parent_pipeline_ptr, GST_STATE_READY );
         }
         else // NOTE: here we could report the typical intervals between "idle" callbacks
         {
-            // g_print(PREFIX_FORMAT "playtime=%u %s", saver_ptr->instance_ID, playtime_ms, " ... TEE insertion is ONGOING \n");
+
         }
 
         return TRUE;
@@ -1379,17 +1375,17 @@ static gboolean do_pipeline_callback_for_timer_tick(gpointer aCtxPtr)
 
     if (now_nanos < saver_ptr->wait_state_ends_ns)   // idle waiting state
     {
-        g_print(PREFIX_FORMAT "playtime=%u ... idle-wait \n", saver_ptr->instance_ID, playtime_ms);
+        GST_DEBUG(PREFIX_FORMAT "playtime=%u ... idle-wait \n", saver_ptr->instance_ID, playtime_ms);
     }
     else if (splicer_ptr->params.one_snap_ms == 0)     // not doing frame snaps
     {
-        g_print(PREFIX_FORMAT "playtime=%u \n", saver_ptr->instance_ID, playtime_ms);
+        GST_DEBUG(PREFIX_FORMAT "playtime=%u \n", saver_ptr->instance_ID, playtime_ms);
     }
 
     // possibly --- it's time to shutdown the pipeline being tested
     if ( playtime_ms > splicer_ptr->params.max_play_ms )
     {
-        g_print(PREFIX_FORMAT "playtime=%u ... play-ends \n", saver_ptr->instance_ID, playtime_ms);
+        GST_DEBUG(PREFIX_FORMAT "playtime=%u ... play-ends \n", saver_ptr->instance_ID, playtime_ms);
 
         if (gst_element_get_parent(saver_ptr->vid_sourcer_ptr) != NULL)  // default pipeline
         {
@@ -1665,13 +1661,13 @@ static gboolean do_pipeline_test_run_main_loop(FramesSaver_t * aSaverPtr)
         return FALSE;
     }
 
-    g_print(PREFIX_FORMAT "PLAYING \n", aSaverPtr->instance_ID);
+    GST_LOG(PREFIX_FORMAT "PLAYING \n", aSaverPtr->instance_ID);
 
     g_timeout_add(splicer_ptr->params.one_tick_ms, do_pipeline_callback_for_timer_tick, aSaverPtr);
 
     g_main_loop_run(The_MainLoop_Ptr);
 
-    g_print(PREFIX_FORMAT "EXITING \n", aSaverPtr->instance_ID);
+    GST_LOG(PREFIX_FORMAT "EXITING \n", aSaverPtr->instance_ID);
 
     return TRUE;
 }
@@ -1873,7 +1869,7 @@ int Frame_Saver_Filter_Transition(GstElement * aPluginPtr, GstStateChange aTrans
 
             do_prepare_to_play( saver_ptr, FALSE );
 
-            g_print(report);
+            GST_LOG(report);
         }
     }
 
@@ -2015,7 +2011,7 @@ int Frame_Saver_Filter_Set_Params(GstElement  * aPluginPtr,
         }
     }
 
-    g_print(PREFIX_FORMAT "Set_Params --- Error=%d --- NOW=(%s) %s \n", saver_ptr->instance_ID, error, aDstValuePtr, psz_note);
+    GST_ERROR(PREFIX_FORMAT "Set_Params --- Error=%d --- NOW=(%s) %s \n", saver_ptr->instance_ID, error, aDstValuePtr, psz_note);
 
     return error;   // 0 is success
 }
@@ -2032,7 +2028,7 @@ int frame_saver_filter_tester( int argc, char ** argv )
 
     if ( result != 0 )
     {
-        g_print("frame_saver_filter_tester --- do_initialize_static_resources() --- FAILED \n");
+        GST_ERROR("frame_saver_filter_tester --- do_initialize_static_resources() --- FAILED \n");
         return result;
     }
 
@@ -2050,12 +2046,11 @@ int frame_saver_filter_tester( int argc, char ** argv )
 
     if (frame_saver_params_parse_from_array(params_ptr, ++argv, --argc) != TRUE)
     {
-        g_print("\n");
         result = 2;
     }
     else if (frame_saver_params_write_to_file(params_ptr, stdout) != TRUE)
     {
-        g_print("frame_saver_filter_tester --- report parameters used --- FAILED \n");
+        GST_ERROR("frame_saver_filter_tester --- report parameters used --- FAILED \n");
         result = 3;
     }
     else
@@ -2064,7 +2059,7 @@ int frame_saver_filter_tester( int argc, char ** argv )
 
         if (result != 0)
         {
-            g_print("frame_saver_filter_tester --- create pipeline --- ERRORS=(%d) \n", result);
+            GST_ERROR("frame_saver_filter_tester --- create pipeline --- ERRORS=(%d) \n", result);
         }
         else if (do_pipeline_test_run_main_loop(saver_ptr) != TRUE)
         {
