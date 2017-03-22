@@ -1,7 +1,7 @@
-/* 
+/*
  * ======================================================================================
  * File:        frame_saver_params.c
- * 
+ *
  * History:     1. 2016-10-29   JBendor     Created
  *              2. 2016-11-06   JBendor     Updated
  *              3. 2016-11-04   JBendor     Support for custom pipelines
@@ -36,7 +36,7 @@ static int do_trim_spaces(char * aTextPtr, gboolean aKeepOne)
     while ( *(++src_ptr) != 0 )
     {
         if ( (a_context == QUOTE) || (*src_ptr == QUOTE) )
-        {  
+        {
             aTextPtr[ ++dst_idx ] = *src_ptr;
             a_context = (*src_ptr == a_context) ? 0 : a_context;
         }
@@ -61,9 +61,9 @@ static int do_trim_spaces(char * aTextPtr, gboolean aKeepOne)
  //
  // finds occurences of a delimiter in a string --- returns number of occurences
  //=======================================================================================
-static int do_find_char_occurences(const char * aTextPtr, 
-                                   char         aDelimiter, 
-                                   int          aLngArray[], 
+static int do_find_char_occurences(const char * aTextPtr,
+                                   char         aDelimiter,
+                                   int          aLngArray[],
                                    int          aMaxTokens)
 {
     const char * prior_ptr = aTextPtr - 1;
@@ -236,9 +236,9 @@ static int  do_read_params_file(const char * aAbsPathPtr,
 //
 // parse caps string --- returns 0 on success, else error
 //=======================================================================================
-gint pipeline_params_parse_caps(const char * aCapsPtr, 
-                                gchar * aFormatPtr, 
-                                gint  * aNumColsPtr, 
+gint pipeline_params_parse_caps(const char * aCapsPtr,
+                                gchar * aFormatPtr,
+                                gint  * aNumColsPtr,
                                 gint  * aNumRowsPtr,
                                 gint  * aNumBitsPtr)
 {
@@ -315,9 +315,9 @@ gboolean pipeline_params_parse_one(const char * aSpecsPtr, SplicerParams_t * aPa
 
         if (is_ok)
         {
-            while (*token_ptr == ' ') 
-            { 
-                ++token_ptr; 
+            while (*token_ptr == ' ')
+            {
+                ++token_ptr;
             }
             is_ok = (sscanf(token_ptr, "%u", &aParamsPtr->one_snap_ms) == 1);
         }
@@ -327,9 +327,9 @@ gboolean pipeline_params_parse_one(const char * aSpecsPtr, SplicerParams_t * aPa
 
         if (is_ok && (num_tokens > 1))
         {
-            while (*token_ptr == ' ') 
-            { 
-                ++token_ptr; 
+            while (*token_ptr == ' ')
+            {
+                ++token_ptr;
             }
             is_ok = (sscanf(token_ptr, "%u", &aParamsPtr->max_num_snaps_saved) == 1);
         }
@@ -339,9 +339,9 @@ gboolean pipeline_params_parse_one(const char * aSpecsPtr, SplicerParams_t * aPa
 
         if (is_ok && (num_tokens > 2))
         {
-            while (*token_ptr == ' ') 
-            { 
-                ++token_ptr; 
+            while (*token_ptr == ' ')
+            {
+                ++token_ptr;
             }
             is_ok = (sscanf(token_ptr, "%u", &aParamsPtr->max_num_failed_snap) == 1);
         }
@@ -355,16 +355,16 @@ gboolean pipeline_params_parse_one(const char * aSpecsPtr, SplicerParams_t * aPa
 
         int num_tokens = do_find_char_occurences(&aSpecsPtr[5], ',', lengths, 4);
 
-        is_ok = (num_tokens == 3) && 
+        is_ok = (num_tokens == 3) &&
                 (lengths[0] >= 1) && (lengths[0] <= MAX_ELEMENT_NAME_LNG) &&
-                (lengths[1] >= 1) && (lengths[1] <= MAX_ELEMENT_NAME_LNG) &&                   
+                (lengths[1] >= 1) && (lengths[1] <= MAX_ELEMENT_NAME_LNG) &&
                 (lengths[2] >= 1) && (lengths[2] <= MAX_ELEMENT_NAME_LNG);
 
         if (is_ok)
         {
             const char *token_ptr = &aSpecsPtr[5];
             int         token_lng = lengths[0];
-            
+
             strncpy( aParamsPtr->pipeline_name, token_ptr, token_lng);
             aParamsPtr->pipeline_name[token_lng] = 0;
 
@@ -376,7 +376,7 @@ gboolean pipeline_params_parse_one(const char * aSpecsPtr, SplicerParams_t * aPa
 
             token_ptr += token_lng;
             token_lng = lengths[2];
-            
+
             strncpy( aParamsPtr->consumer_name, ++token_ptr, token_lng );
             aParamsPtr->consumer_name[token_lng] = 0;
 
@@ -394,9 +394,9 @@ gboolean pipeline_params_parse_one(const char * aSpecsPtr, SplicerParams_t * aPa
 
         int num_tokens = do_find_char_occurences(&aSpecsPtr[5], ',', lengths, 4);
 
-        is_ok = (num_tokens == 3) && 
+        is_ok = (num_tokens == 3) &&
                 (lengths[0] >= 1) && (lengths[0] <= MAX_PAD_NAME_LNG) &&
-                (lengths[1] >= 1) && (lengths[1] <= MAX_PAD_NAME_LNG) &&                   
+                (lengths[1] >= 1) && (lengths[1] <= MAX_PAD_NAME_LNG) &&
                 (lengths[2] >= 1) && (lengths[2] <= MAX_PAD_NAME_LNG);
 
         if (is_ok)
@@ -415,7 +415,7 @@ gboolean pipeline_params_parse_one(const char * aSpecsPtr, SplicerParams_t * aPa
 
             token_ptr += token_lng;
             token_lng = lengths[2];
-            
+
             strncpy( aParamsPtr->consumer_out_pad_name, ++token_ptr, token_lng );
             aParamsPtr->consumer_out_pad_name[token_lng] = 0;
 
@@ -471,37 +471,37 @@ gint frame_saver_params_write_to_buffer(SplicerParams_t * aParamsPtr, char * aBu
         psz_pipeline_type = "custom-pipeline";
     }
 
-    if ((*aParamsPtr->pipeline_name == 0) || 
+    if ((*aParamsPtr->pipeline_name == 0) ||
         (strcmp(aParamsPtr->pipeline_name, "auto") == 0))
     {
         sprintf(aParamsPtr->pipeline_name, "%s", DEFAULT_PIPELINE_NAME);
     }
 
-    if ((*aParamsPtr->producer_name == 0) || 
+    if ((*aParamsPtr->producer_name == 0) ||
         (strcmp(aParamsPtr->producer_name, "auto") == 0))
     {
         sprintf(aParamsPtr->producer_name, "%s", DEFAULT_VID_SRC_NAME);
     }
 
-    if ((*aParamsPtr->consumer_name == 0) || 
+    if ((*aParamsPtr->consumer_name == 0) ||
         (strcmp(aParamsPtr->consumer_name, "auto") == 0))
     {
         sprintf(aParamsPtr->consumer_name, "%s", DEFAULT_VID_CVT_NAME);
     }
 
-    if ((*aParamsPtr->producer_out_pad_name == 0) || 
+    if ((*aParamsPtr->producer_out_pad_name == 0) ||
         (strcmp(aParamsPtr->producer_out_pad_name, "auto") == 0))
     {
         sprintf(aParamsPtr->producer_out_pad_name, "%s", "src");
     }
 
-    if ((*aParamsPtr->consumer_inp_pad_name == 0) || 
+    if ((*aParamsPtr->consumer_inp_pad_name == 0) ||
         (strcmp(aParamsPtr->consumer_inp_pad_name, "auto") == 0))
     {
         sprintf(aParamsPtr->consumer_inp_pad_name, "%s", "sink");
     }
 
-    if ((*aParamsPtr->consumer_out_pad_name == 0) || 
+    if ((*aParamsPtr->consumer_out_pad_name == 0) ||
         (strcmp(aParamsPtr->consumer_out_pad_name, "auto") == 0))
     {
         sprintf(aParamsPtr->consumer_out_pad_name, "%s", "src");
@@ -509,7 +509,7 @@ gint frame_saver_params_write_to_buffer(SplicerParams_t * aParamsPtr, char * aBu
 
     int max_lng = aMaxLength - 1;
 
-    int txt_lng = snprintf(aBufferPtr, max_lng,  FMT,  
+    int txt_lng = snprintf(aBufferPtr, max_lng,  FMT,
                            "\nPARAMETERS:",
                            "\n          tick", aParamsPtr->one_tick_ms,
                            "\n          snap", aParamsPtr->one_snap_ms,
@@ -520,10 +520,10 @@ gint frame_saver_params_write_to_buffer(SplicerParams_t * aParamsPtr, char * aBu
                            "\n          path", aParamsPtr->folder_path,
                            "\n          pipe", psz_pipeline_type,
                            "\n          link", aParamsPtr->pipeline_name,
-                                               aParamsPtr->producer_name, 
+                                               aParamsPtr->producer_name,
                                                aParamsPtr->consumer_name,
-                           "\n          pads", aParamsPtr->producer_out_pad_name, 
-                                               aParamsPtr->consumer_inp_pad_name, 
+                           "\n          pads", aParamsPtr->producer_out_pad_name,
+                                               aParamsPtr->consumer_inp_pad_name,
                                                aParamsPtr->consumer_out_pad_name);
 
     if (bangs_ptr != NULL)
@@ -546,7 +546,7 @@ gint frame_saver_params_write_to_buffer(SplicerParams_t * aParamsPtr, char * aBu
             {
                 *bangs_ptr = 0;
                 max_lng = aMaxLength - txt_lng;
-                txt_lng += snprintf(aBufferPtr + txt_lng, max_lng, ".........%s ! \n", specs_ptr);            
+                txt_lng += snprintf(aBufferPtr + txt_lng, max_lng, ".........%s ! \n", specs_ptr);
                 continue;
             }
             break;
@@ -677,7 +677,7 @@ gboolean frame_saver_params_parse_from_array(SplicerParams_t * aParamsPtr, char 
         // possibly --- read and parse parameters from a designated file
         if ( strncmp(psz_param, "args=", 5) == 0 )
         {
-            char  abs_path[PATH_MAX]; 
+            char  abs_path[PATH_MAX];
             char  params_ascii[4000];
             char* params_array[MAX_PARAMS_ARRAY_LNG];
 
@@ -685,7 +685,7 @@ gboolean frame_saver_params_parse_from_array(SplicerParams_t * aParamsPtr, char 
 
             int  max_params = full_path ? MAX_PARAMS_ARRAY_LNG : 0;
 
-            int  num_params = do_read_params_file(abs_path, 
+            int  num_params = do_read_params_file(abs_path,
                                                   sizeof(params_ascii),
                                                   params_ascii,
                                                   --max_params,
@@ -698,7 +698,7 @@ gboolean frame_saver_params_parse_from_array(SplicerParams_t * aParamsPtr, char 
             continue;
         }
 
-        g_print("WARNING:  Unknown Arg_%d: (%s) \n", aArgsCount, aArgsArray[aArgsCount]);
+        GST_WARNING("WARNING:  Unknown Arg_%d: (%s) \n", aArgsCount, aArgsArray[aArgsCount]);
 
     } // ends while ( is_ok && (--aArgsCount >= 0) )
 
@@ -706,23 +706,23 @@ gboolean frame_saver_params_parse_from_array(SplicerParams_t * aParamsPtr, char 
     {
         if (aParamsPtr->one_tick_ms < MIN_TICKS_MILLISEC)
         {
-            g_print("minimum 'tick' time interval is %u miliseconds \n", MIN_TICKS_MILLISEC);
+            GST_WARNING("minimum 'tick' time interval is %u miliseconds \n", MIN_TICKS_MILLISEC);
             is_ok = FALSE;
         }
         else if (aParamsPtr->max_play_ms < aParamsPtr->one_tick_ms)
         {
-            g_print("minimum 'play' milliseconds is one 'tick' \n");      
+            GST_WARNING("minimum 'play' milliseconds is one 'tick' \n");
             is_ok = FALSE;
         }
         else if (aParamsPtr->max_play_ms < aParamsPtr->one_snap_ms)
         {
-            g_print("maximum 'snap' milliseconds is 'play' time \n");      
+            GST_WARNING("maximum 'snap' milliseconds is 'play' time \n");
             is_ok = FALSE;
         }
     }
     else
     {
-        g_print("ERROR: Invalid Arg_%d: (%s) \n", aArgsCount, aArgsArray[aArgsCount]);
+        GST_ERROR("ERROR: Invalid Arg_%d: (%s) \n", aArgsCount, aArgsArray[aArgsCount]);
     }
 
     return is_ok;
