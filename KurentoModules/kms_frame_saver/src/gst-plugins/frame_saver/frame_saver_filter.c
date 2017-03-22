@@ -325,6 +325,7 @@ static gint do_save_frame_buffer(GstBuffer     * aBufferPtr,
     }
 
     sprintf(sz_image_path,
+
             "%s%c%05u_%lu.png",
             aSaverPtr->work_folder_path, PATH_DELIMITER,
             aSaverPtr->num_saved_frames,
