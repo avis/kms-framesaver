@@ -123,17 +123,22 @@ static int do_save_RGB_frame_to_PNG_file (PixmapInfo_t * aPixmapPtr, const char 
         }
     }
 
-    png_init_io(png_ptr, fp);
+    png_init_io (png_ptr, fp);
 
-    png_set_rows(png_ptr, info_ptr, row_pointers);
+    png_set_rows (png_ptr, info_ptr, row_pointers);
 
-    png_write_png(png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, NULL);
+    png_write_png (png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, NULL);
 
-    fclose(fp);
+    png_free (png_ptr, row_pointers);
 
-    png_free(png_ptr, row_pointers);
+    row_pointers = NULL;
 
-    png_destroy_write_struct(&png_ptr, &info_ptr); /* add avi@may2017 - free png structures, reorder memory deallocation */
+    png_destroy_write_struct (&png_ptr, &info_ptr);
+
+    png_ptr = NULL;
+    info_ptr = NULL;
+
+    fclose (fp);
 
 #else
 

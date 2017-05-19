@@ -156,6 +156,8 @@ typedef struct _FramesSaver_t
 
     gchar               work_folder_path[PATH_MAX + 1];
 
+    int                isIdleTaskInitialized;
+
 } FramesSaver_t;
 
 
@@ -626,6 +628,8 @@ static GstElement* do_appsink_create(FramesSaver_t * aSaverPtr, const char * aNa
                                           aSaverPtr,
                                           NULL );
 
+    gst_object_unref(GST_OBJECT(ptr_inp_pad));
+
     return ( (probe_EOS && probe_BUF) ? appsink_ptr : appsink_ptr );
 }
 
@@ -955,6 +959,9 @@ static gint do_splicer_configure_TEE_pads(FramesSaver_t * aSaverPtr)
 
     gst_object_unref(queue1_pad_ptr);
     gst_object_unref(queue2_pad_ptr);
+
+    gst_object_unref(tee_Q2_pad_ptr);
+    gst_object_unref(tee_Q1_pad_ptr);
 
     return 1;
 }
@@ -1384,7 +1391,7 @@ static gboolean do_pipeline_callback_for_timer_tick(gpointer aCtxPtr)
     }
 
     // possibly --- it's time to shutdown the pipeline being tested
-    if ( playtime_ms > splicer_ptr->params.max_play_ms )
+    /*if ( playtime_ms > splicer_ptr->params.max_play_ms )
     {
         GST_DEBUG(PREFIX_FORMAT "playtime=%u ... play-ends \n", saver_ptr->instance_ID, playtime_ms);
 
@@ -1400,7 +1407,11 @@ static gboolean do_pipeline_callback_for_timer_tick(gpointer aCtxPtr)
         do_frame_saver_element_cleanup( saver_ptr );
 
         return FALSE;
-    }
+    }*/
+
+    gst_element_set_state( saver_ptr->parent_pipeline_ptr, GST_STATE_NULL );
+
+    do_frame_saver_element_cleanup( saver_ptr );
 
     return TRUE;
 }
@@ -1626,7 +1637,14 @@ static gboolean do_prepare_to_play( FramesSaver_t * aSaverPtr, gboolean canSplic
         }
     }
 
-    g_idle_add( do_pipeline_callback_for_idle_time, aSaverPtr );
+    if(aSaverPtr->isIdleTaskInitialized != 1) {
+        /* Idle task addition must only be called once or we will have one created every time this is called
+         * and we can only destroy one upon object's destruction */
+
+        g_idle_add(do_pipeline_callback_for_idle_time, aSaverPtr);
+        aSaverPtr->isIdleTaskInitialized = 1;
+        GST_DEBUG("Idle task initialized.");
+    }
 
     return TRUE;
 }
@@ -1790,6 +1808,8 @@ int Frame_Saver_Filter_Detach(GstElement * aPluginPtr)
     saver_ptr->attached_plugin_ptr = NULL;
     saver_ptr->parent_pipeline_ptr = NULL;
     saver_ptr->instance_ID         = 0;
+
+    g_idle_remove_by_data(saver_ptr); // remove the idle loop callback.
 
     do_DBG_print("Detach_GST --- SUCCESS \n", saver_ptr);
 
